@@ -11,7 +11,7 @@ public class User {
     private List<Invitation> invitations;
     private List<Match> matches;
 
-    // Register a new user with email and password
+    /*  Register a new user with email and password
     public void register(String email, String password) {
     }
 
@@ -42,4 +42,5 @@ public class User {
     // Quit a match
     public void quitMatch(Match match) {
     }
+    */
 }
