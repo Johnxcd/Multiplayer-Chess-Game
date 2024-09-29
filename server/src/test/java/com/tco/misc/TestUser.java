@@ -7,12 +7,12 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUser {
-
+/* 
     private User user;
 
     @BeforeEach
     public void setUp() {
         user = new User();
     }
-
+*/
 }
