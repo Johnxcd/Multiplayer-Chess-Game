@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestInvitation {
+public class TestNotification{
     private Notification notify;
 
     @BeforeEach

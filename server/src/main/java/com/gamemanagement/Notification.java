@@ -15,27 +15,27 @@ public class Notification {
         //nothing yet
     }
 
-    public setRequestor(User requestor){
-        this.requestor = requestor
+    public void setRequestor(User requestor){
+        this.requestor = requestor;
     }
 
-    public setRequested(User requested){
-        this.requested = requested
+    public void setRequested(User requested){
+        this.requested = requested;
     }
 
     public String getNotificationType(){
         return notificationType;
     }
 
-    public setNotificationType(String notification){
+    public void setNotificationType(String notification){
         notificationType = notification;
     }
 
-    public setGameStatus(String status){
+    public void setGameStatus(String status){
         this.gameStatus = status;
     }
 
-    public setGameOutcome(String outcome){
+    public void setGameOutcome(String outcome){
         this.gameOutcome = outcome;
     }
 }
