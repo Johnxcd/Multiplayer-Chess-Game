@@ -1,4 +1,4 @@
-package com.tco.misc;
+package com.tco.gameplaying;
 
 import java.util.List;
 

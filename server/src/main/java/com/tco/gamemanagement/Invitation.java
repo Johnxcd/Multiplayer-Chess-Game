@@ -1,4 +1,4 @@
-package com.tco.misc;
+package com.tco.gamemanagement;
 
 public class Invitation {
     private String inviteMessage;
