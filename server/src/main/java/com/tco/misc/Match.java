@@ -1,6 +1,9 @@
 package com.tco.misc;
 
 import java.util.List;
+import com.tco.gamemanagement.User;
+import com.tco.usermanagement.History;
+import com.tco.gameplaying.Rules;
 
 public class Match {
     private List<User> users;
