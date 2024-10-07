@@ -1,4 +1,4 @@
-package com.tco.platform;
+package com.tco.gamemanagement;
 
 public class Platform {
     // private Profile profile;

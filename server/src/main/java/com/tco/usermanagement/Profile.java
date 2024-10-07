@@ -1,4 +1,5 @@
-package com.tco.misc;
+package com.tco.usermanagement;
+import com.tco.gamemanagement.User;
 
 public class Profile {
     private User user;
