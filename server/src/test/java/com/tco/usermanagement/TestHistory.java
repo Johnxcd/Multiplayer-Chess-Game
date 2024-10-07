@@ -1,4 +1,4 @@
-package com.tco.misc;
+package com.tco.usermanagement;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

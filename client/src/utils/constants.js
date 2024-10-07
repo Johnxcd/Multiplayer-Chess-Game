@@ -16,4 +16,4 @@ setLogLevelIfDefault();
 
 export const LOG = ulog("App");
 
-export const CLIENT_TEAM_NAME = "t00 team name";
+export const CLIENT_TEAM_NAME = "t05 The Code Monkeys";

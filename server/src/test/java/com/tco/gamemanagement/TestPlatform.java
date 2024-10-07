@@ -1,4 +1,4 @@
-package com.tco.platform;
+package com.tco.gamemanagement;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

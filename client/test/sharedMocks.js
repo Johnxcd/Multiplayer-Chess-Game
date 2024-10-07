@@ -1,7 +1,7 @@
 
 export const VALID_CONFIG_RESPONSE = JSON.stringify({
     requestType: 'config',
-    serverName: 't00',
+    serverName: 't05',
     features: ['config']
 });
 

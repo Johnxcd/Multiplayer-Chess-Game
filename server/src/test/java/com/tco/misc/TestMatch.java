@@ -6,13 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestUser {
-/* 
-    private User user;
+public class TestMatch {
+    private Match match;
 
     @BeforeEach
     public void setUp() {
-        user = new User();
+        match = new Match();
     }
-*/
 }

@@ -1,4 +1,5 @@
-package com.tco.misc;
+package com.tco.usermanagement;
+import com.tco.gamemanagement.User;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,11 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestInvitation {
-    private Invitation invitation;
+public class TestProfile {
+    private Profile profile;
 
     @BeforeEach
     public void setUp() {
-        invitation = new Invitation();
+        profile = new Profile();
     }
 }
