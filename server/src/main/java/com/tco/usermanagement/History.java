@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import com.tco.misc.Match;
+import com.tco.gameplaying.Match;
 
 public class History {
     private int totalGames;
