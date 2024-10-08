@@ -10,7 +10,6 @@ public class Platform {
     public Platform() {
         this.profile = null; // New Platform shouldn't have any user logged in!
         this.match = null;   // New Platform shouldn't have an active game up!
-
     }
 
     public Profile getProfile() {
