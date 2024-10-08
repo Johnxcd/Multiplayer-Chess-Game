@@ -1,25 +1,44 @@
 package com.tco.gamemanagement;
 
+import com.tco.usermanagement.Profile;
+import com.tco.gameplaying.Match;
+
 public class Platform {
-    // private Profile profile;
+    private Profile profile;
+    private Match match;
 
-    // private void sendInvitation(Profile profile) {
-
-    // }
-
-    private void displayNotifications() {
-
-    }
-
-    // private void displayHistory(Profile profile) {
-
-    // }
-
-    private void login(String username, String password) {
+    public Platform() {
+        this.profile = null; // New Platform shouldn't have any user logged in!
+        this.match = null;   // New Platform shouldn't have an active game up!
 
     }
 
-    private void logout() {
-        
+    public Profile getProfile() {
+        return this.profile;
+    }
+    
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Match getMatch() {
+        return this.match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    } 
+
+    // private void login(String username, String password) {
+    //     Profile authorizedUser = authenticate(username, password);
+    //     if (authorizedUser == null) {
+    //         // incorrect password / username combination (or user does not exist)
+    //     } else {
+    //         this.setProfile(authorizedUser);
+    //     }
+    // }
+
+    public void logout() {
+        this.setProfile(null);
     }
 }
