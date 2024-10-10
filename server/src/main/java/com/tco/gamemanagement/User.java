@@ -1,11 +1,33 @@
 package com.tco.gamemanagement;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Invitation{
+    
+  private static List<User> users = new ArrayList<>();
+  private String username = "";
+  
+  public User(String username) {
+      this.username = username;
+      users.add(this);
+    }
+
+  public String getUsername() {
+      return username;
+  }
+
+  public static void sendInvitation(String username) {
+      for (User user : users) {
+          if (user.getUsername().equals(username)) {
+            user.onInvitation();
+          }
+      }
+  }
+
     /*
     private Profile profile;
-    private String username;
+    
     private String email;
     private String password;
     private List<Notification> notifications;
@@ -44,4 +66,22 @@ public class User {
     public void quitMatch(Match match) {
     }
     */
+    
+    @Override
+    public void notifyAllPlayers(){
+      for (User user : users) {
+       //Do something
+    }
+    }
+
+    @Override
+    public void sendNotification(User user){
+      //Nothing yet
+    }
+
+    //do something with the invite
+    @Override
+    public void onInvitation(){
+     
+    }
 }
