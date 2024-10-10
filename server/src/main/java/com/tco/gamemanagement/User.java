@@ -4,11 +4,25 @@ import java.util.List;
 
 public class User implements Invitation{
     
-    private String username;
-
-    public User(String username){
+  private static List<User> users = new ArrayList<>();
+  private String username;
+  
+  public User(String username) {
       this.username = username;
+      users.add(this);
     }
+
+  public String getUsername() {
+      return username;
+  }
+
+  public static void sendInvitation(String username) {
+      for (User user : users) {
+          if (user.getUsername().equals(username)) {
+            user.onInvitation();
+          }
+      }
+  }
 
     /*
     private Profile profile;
@@ -54,7 +68,9 @@ public class User implements Invitation{
     
     @Override
     public void notifyAllPlayers(){
-      //Nothing yet
+      for (User user : users) {
+       //Do something
+    }
     }
 
     @Override

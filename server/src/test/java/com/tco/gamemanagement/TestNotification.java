@@ -11,9 +11,28 @@ public class TestNotification{
 
     public class NotifyTest implements Notification{
         boolean recieved = false;
+
+        private static List<User> users = new ArrayList<>();
+        private String username;
+        
+        public NotifyTest(String username) {
+            this.username = username;
+            users.add(this);
+          }
+      
+        public String getUsername() {
+            return username;
+        }
+      
+        public static void sendInvitation(String username) {
+            
+        }
+
         @Override
         public void notifyAllPlayers(){
-            recieved = true;
+            for (User user : users) {
+                recieved = true;
+            }
         }
         public boolean getRecieved(){
             return recieved;
@@ -22,9 +41,9 @@ public class TestNotification{
 
     @Test
     public void TestNotifyAll(){
-        NotifyTest notifyTest1 = new NotifyTest();
-        NotifyTest notifyTest2 = new NotifyTest();
-        NotifyTest notifyTest3 = new NotifyTest();
+        NotifyTest notifyTest1 = new NotifyTest("A");
+        NotifyTest notifyTest2 = new NotifyTest("B");
+        NotifyTest notifyTest3 = new NotifyTest("C");
 
         notifyTest1.notifyAllPlayers();
 
