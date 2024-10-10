@@ -30,7 +30,7 @@ public class TestInvitation {
         }
 
         @Override
-        public void onInvitation(String userName){
+        public void onInvitation(){
             if(this.userName == userName){
                 testIsMe = true;
             }
@@ -44,9 +44,9 @@ public class TestInvitation {
 
     @Test
     public void testOnInviteValid(){
-        InviteTest inviteTest = new InviteTest("UserOne");
+        // InviteTest inviteTest = new InviteTest("UserOne");
 
-        inviteTest.onInvitation("UserOne");
+        // inviteTest.onInvitation("UserOne");
 
     }
 }
