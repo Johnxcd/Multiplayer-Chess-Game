@@ -26,7 +26,19 @@ public class Platform {
 
     public void setMatch(Match match) {
         this.match = match;
-    } 
+    }
+    
+    public User login(String email, String password) {
+        // Loop users to find the one with the matching email
+        for (User user : User.getUsers()) {
+            User authenticatedUser = user.authenticate(email, password);
+            if (authenticatedUser != null) {
+                this.setProfile(authenticatedUser.getProfile());
+                return authenticatedUser;
+            }
+        }
+        return null;
+    }
 
     // private void login(String username, String password) {
     //     Profile authorizedUser = authenticate(username, password);

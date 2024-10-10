@@ -1,5 +1,7 @@
 package com.tco.usermanagement;
+
 import com.tco.gamemanagement.User;
+import com.tco.usermanagement.History;
 
 public class Profile {
     private User user;
