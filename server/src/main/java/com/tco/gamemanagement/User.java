@@ -2,10 +2,17 @@ package com.tco.gamemanagement;
 
 import java.util.List;
 
-public class User {
+public class User implements Invitation{
+    
+    private String username;
+
+    public User(String username){
+      this.username = username;
+    }
+
     /*
     private Profile profile;
-    private String username;
+    
     private String email;
     private String password;
     private List<Notification> notifications;
@@ -44,4 +51,25 @@ public class User {
     public void quitMatch(Match match) {
     }
     */
+    
+    @Override
+    public void notifyAllPlayers(){
+      //Nothing yet
+    }
+
+    @Override
+    public void sendNotification(User user){
+      //Nothing yet
+    }
+
+    //Check if this call to invination is for myself, do something with the invite
+    @Override
+    public void onInvitation(String username){
+      if(this.username == username){
+        //Do something with the invite
+      }
+      else{
+        //Not an Invite this user
+      }
+    }
 }

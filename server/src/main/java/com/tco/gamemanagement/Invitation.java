@@ -1,13 +1,13 @@
 package com.tco.gamemanagement;
 
-public class Invitation {
-    private String inviteMessage;
-    private String rejectedMessage;
+interface Invitation extends Notification{
+    public String inviteMessage = null;
+    public String rejectedMessage = null;
     // private Notification notification; //NEED TO GET NOTIFICATION
 
-    public void sendNotification(User user) { 
-        
-    }
+    public void sendNotification(User user);
+
+    public void onInvitation(String username);
 
     // public void sendInviteToPlayer(User user, Match match) { //NEED TO GET USER && MATCH
 
