@@ -1,11 +1,12 @@
 package com.tco.gamemanagement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Invitation{
     
   private static List<User> users = new ArrayList<>();
-  private String username;
+  private String username = "";
   
   public User(String username) {
       this.username = username;
@@ -78,14 +79,9 @@ public class User implements Invitation{
       //Nothing yet
     }
 
-    //Check if this call to invination is for myself, do something with the invite
+    //do something with the invite
     @Override
-    public void onInvitation(String username){
-      if(this.username == username){
-        //Do something with the invite
-      }
-      else{
-        //Not an Invite this user
-      }
+    public void onInvitation(){
+     
     }
 }

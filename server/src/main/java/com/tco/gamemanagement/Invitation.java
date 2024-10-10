@@ -7,7 +7,7 @@ interface Invitation extends Notification{
 
     public void sendNotification(User user);
 
-    public void onInvitation(String username);
+    public void onInvitation();
 
     // public void sendInviteToPlayer(User user, Match match) { //NEED TO GET USER && MATCH
 
