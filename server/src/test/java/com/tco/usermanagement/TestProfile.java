@@ -14,4 +14,25 @@ public class TestProfile {
     public void setUp() {
         profile = new Profile();
     }
+
+    @Test
+    @DisplayName("mattjon test: Profile data should relay data correctly")
+    public void testProfileData() {
+        History hist = new History();
+
+        profile.setHistroy(hist);
+        
+        String data = profile.getUserProfileData();
+
+        String expectedResult = "";
+        expectedResult += "Profile Creation Date: " + profile.getCreationDate() + "\n";
+        expectedResult += "Wins: 0"  + "\n";
+        expectedResult += "Losses: 0"  + "\n";
+        expectedResult += "Draws: 0"  + "\n";
+        expectedResult += "Ongoing: 0"  + "\n";
+
+        System.out.println("TEST: " + data);
+
+        assertEquals(data, expectedResult);
+    }
 }
