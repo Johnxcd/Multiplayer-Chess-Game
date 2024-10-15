@@ -5,7 +5,7 @@ import com.tco.gameplaying.PieceType;
 import com.tco.gameplaying.Color;
 
 public class Bishop extends Piece{
-    public Pawn(Color color, int[] position){
+    public Bishop(Color color, int[] position){
         super(PieceType.BISHOP, color, position);
     }
 }

@@ -12,20 +12,20 @@ import com.tco.gameplaying.Knight;
 
 public class PieceFactory{
     
-    public static Piece createPiece(PieceType type, Color color, int[] position){
+    public static Piece createPiece(PieceType type, Color color, int[] position) throws IllegalPieceException{
         switch(type){
             case PAWN:
-                return new PAWN(color, position);
+                return new Pawn(color, position);
             case ROOK:
-                return new PAWN(color, position);
+                return new Rook(color, position);
             case KNIGHT:
-                return new PAWN(color, position);
+                return new Knight(color, position);
             case KING:
-                return new PAWN(color, position);
+                return new King(color, position);
             case QUEEN:
-                return new PAWN(color, position);
+                return new Queen(color, position);
             case BISHOP:
-                return new PAWN(color, position);
+                return new Bishop(color, position);
             default:
                 throw new IllegalPieceException("Unknown piece type: " + type);
         }

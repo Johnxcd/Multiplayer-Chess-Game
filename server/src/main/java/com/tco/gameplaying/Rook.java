@@ -5,7 +5,7 @@ import com.tco.gameplaying.PieceType;
 import com.tco.gameplaying.Color;
 
 public class Rook extends Piece{
-    public Pawn(Color color, int[] position){
+    public Rook(Color color, int[] position){
         super(PieceType.ROOK, color, position);
     }
 }

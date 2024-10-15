@@ -15,7 +15,7 @@ public abstract class Piece{
     }
 
     public PieceType getType() {
-        return this.name;
+        return this.type;
     }
 
     public Color getColor() {

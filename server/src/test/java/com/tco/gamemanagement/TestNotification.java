@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,6 +40,7 @@ public class TestNotification {
     }
 
     @Test
+    @DisplayName("sam25:  test notifyAll")
     public void testNotifyAll() {
         NotifyTest notifyTest1 = new NotifyTest("A");
         NotifyTest notifyTest2 = new NotifyTest("B");
