@@ -9,7 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.beans.Transient;
 
 public class TestPiece {
-    private Piece piece;
+    
+    public Class PieceTest extends Piece{
+    }
+    
+    private PieceTest piece;
 
     @BeforeEach
     public void setUp() {
