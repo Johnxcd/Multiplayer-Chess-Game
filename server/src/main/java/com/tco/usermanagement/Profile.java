@@ -1,6 +1,7 @@
 package com.tco.usermanagement;
 
 import com.tco.gamemanagement.User;
+import com.tco.usermanagement.History;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
