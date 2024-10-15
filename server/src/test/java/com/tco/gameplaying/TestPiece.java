@@ -9,20 +9,28 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.beans.Transient;
 
 public class TestPiece {
-    private Piece piece;
+    
+    public class PieceTest extends Piece{
+        
+        public PieceTest(PieceType type, Color color, int[] pos){
+            super(type,color,pos);
+        }
+    }
+    
+    private PieceTest piece;
 
     @BeforeEach
     public void setUp() {
         int[] position = {0,0};
-        piece = new Piece("King", "White", position);
+        piece = new PieceTest(PieceType.KING, Color.WHITE, position);
     }
 
     @Test
     @DisplayName("ept: Piece can be created")
     public void testPieceName() {
         int[] position = {0,0};
-        assertEquals("King", piece.getName());
-        assertEquals("White", piece.getColor());
+        assertEquals(PieceType.KING, piece.getType());
+        assertEquals(Color.WHITE, piece.getColor());
         assertEquals(0, piece.getPos()[0]);
     }
 }

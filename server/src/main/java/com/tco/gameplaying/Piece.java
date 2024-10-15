@@ -1,21 +1,24 @@
 package com.tco.gameplaying;
 
-public class Piece {
-    private String name;
-    private String color;
+import com.tco.gameplaying.Color;
+import com.tco.gameplaying.PieceType;
+
+public abstract class Piece{
+    private PieceType type;
+    private Color color;
     private int[] position;
 
-    public Piece(String name, String color, int[] position) {
-        this.name = name;
+    public Piece(PieceType type, Color color, int[] position) {
+        this.type = type;
         this.color = color;
         this.position = position;
     }
 
-    public String getName() {
-        return this.name;
+    public PieceType getType() {
+        return this.type;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return this.color;
     }
 
