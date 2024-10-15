@@ -2,12 +2,14 @@ package com.tco.gamemanagement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import com.tco.usermanagement.Profile;
 import com.tco.gameplaying.Match;
 import com.tco.gamemanagement.Notification; 
 
 public class User implements Invitation{
     
+  private static final Logger logger = Logger.getLogger(User.class.getName());
   private static List<User> users = new ArrayList<>();
   private String username;
   private String email;
@@ -54,48 +56,48 @@ public class User implements Invitation{
   public void register(String email, String password) {
     this.email = email;
     this.password = password;
-    System.out.println("User registered with email: " + email);
+    logger.info("User registered with email: " + email);
   }
 
   public User authenticate(String email, String password) {
     if (this.email.equals(email) && this.password.equals(password)) {
-        System.out.println("User authenticated successfully.");
+        logger.info("User authenticated successfully.");
         return this;
     } else {
-        System.out.println("Authentication failed.");
+        logger.warning("Authentication failed.");
         return null;
     }
   }
 
   public void viewProfile() {
     // Do something
-    System.out.println("Viewing profile for user: " + username);
+    logger.info("Viewing profile for user: " + username);
   }
 
   public void updateProfile(Profile profile) {
     this.profile = profile;
     // Do something
-    System.out.println("Profile updated for user: " + username);
+    logger.info("Profile updated for user: " + username);
   }
 
   public void acceptInvitation(Invitation invitation) {
     invitations.add(invitation);
-    System.out.println("Invitation accepted by user: " + username);
+    logger.info("Invitation accepted by user: " + username);
   }
 
   public void rejectInvitation(Invitation invitation) {
     // Do something
-    System.out.println("Invitation rejected by user: " + username);
+    logger.info("Invitation rejected by user: " + username);
   }
 
   public void joinMatch(Match match) {
     matches.add(match);
-    System.out.println("User " + username + " joined match.");
+    logger.info("User " + username + " joined match.");
   }
 
   public void quitMatch(Match match) {
     matches.remove(match);
-    System.out.println("User " + username + " quit match.");
+    logger.info("User " + username + " quit match.");
   }
 
   @Override
