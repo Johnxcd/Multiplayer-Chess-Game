@@ -4,11 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import com.tco.usermanagement.Profile;
+import com.tco.usermanagement.History;
 import com.tco.gameplaying.Match;
+import com.tco.gameplaying.Rules;
+import java.util.List;
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUser {
-
     private User user1;
     private User user2;
     private Profile profile;
@@ -20,7 +23,12 @@ public class TestUser {
         user1 = new User("user1");
         user2 = new User("user2");
         profile = new Profile();
-        match = new Match();
+        List<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+        Rules rules = new Rules();
+        History history = new History();
+        match = new Match(users, history, rules);
         invitation = new Invitation() {
             @Override
             public void sendNotification(User user) {

@@ -2,6 +2,9 @@ package com.tco.gameplaying;
 
 import com.tco.gameplaying.Color;
 import com.tco.gameplaying.PieceType;
+import java.util.List;
+import com.tco.gamemanagement.Game;
+
 
 public abstract class Piece{
     private PieceType type;
@@ -29,4 +32,7 @@ public abstract class Piece{
     public void setPos(int[] position) {
         this.position = position;
     }
+
+    // abstract method for possible moves
+    public abstract List<int[]> getPossibleMoves(Game game);
 }
