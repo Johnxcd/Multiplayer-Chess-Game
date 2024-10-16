@@ -3,6 +3,9 @@ package com.tco.gameplaying;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import java.util.List;
+import java.util.ArrayList;
+import com.tco.gamemanagement.Game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +17,11 @@ public class TestPiece {
         
         public PieceTest(PieceType type, Color color, int[] pos){
             super(type,color,pos);
+        }
+        
+        @Override
+        public List<int[]> getPossibleMoves(Game game) {
+            return new ArrayList<>(); // logic for testing if needed
         }
     }
     

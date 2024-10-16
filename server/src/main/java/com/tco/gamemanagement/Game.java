@@ -3,6 +3,7 @@ package com.tco.gamemanagement;
 import java.util.ArrayList;
 import java.util.List;
 import com.tco.misc.*;
+import com.tco.gameplaying.Piece;
 
 public abstract class Game {
     
@@ -12,6 +13,9 @@ public abstract class Game {
     public Game(){
         //nothing yet
     }
+
+    public abstract Piece getPieceAt(int[] position);
+    public abstract boolean isPositionOnBoard(int[] position);
 
     public void setUsers(ArrayList<User> users){
         this.users = users;

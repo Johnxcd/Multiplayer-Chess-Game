@@ -3,27 +3,53 @@ package com.tco.gameplaying;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+import com.tco.gamemanagement.Game;
+import com.tco.gamemanagement.User;
+import com.tco.gamemanagement.GameStatus;
+import com.tco.usermanagement.History;
 
 public class TestRules {
-/* 
     private Rules rules;
-    private Game game;
+    private Match game;
     private Move move;
-    private Player player;
-    private List<Player> players;
-    private List<GameState> gameStates;
+    private User user1, user2;
+    private List<User> users;
 
     @BeforeEach
     public void setUp() {
         rules = new Rules();
-        game = new Game();
-        move = new Move();
-        player = new Player();
-        players = new ArrayList<>();
-        gameStates = new ArrayList<>();
+        users = new ArrayList<>();
+        user1 = new User("user1");
+        user2 = new User("user2");
+        users.add(user1);
+        users.add(user2);
+        game = new Match(users, new History(), rules);
     }
-    */
 
+    @Test
+    @DisplayName("Test Move Validation")
+    public void testValidateMove() {
+        // move from (1,0) to (2,0)
+        move = new Move(new int[]{1, 0}, new int[]{2, 0});
+        assertTrue(rules.validateMove(move, game));
+
+        // invalid move example
+        move = new Move(new int[]{1, 0}, new int[]{3, 0});
+        assertFalse(rules.validateMove(move, game));
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test Determine Turn Order")
+    public void testDetermineTurnOrder() {
+        assertEquals(user1, rules.determineTurnOrder(users));
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test Game Status Check")
+    public void testCheckGameStatus() {
+        assertEquals(GameStatus.ONGOING, rules.checkGameStatus(game));
+    }
 }

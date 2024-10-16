@@ -1,29 +1,35 @@
 package com.tco.gameplaying;
 
 import java.util.List;
+import com.tco.gamemanagement.Game;
+import com.tco.gamemanagement.User;
+import com.tco.gamemanagement.GameStatus;
 
 public class Rules {
-    /* 
 
-    // Validate moves according to chess rules
     public boolean validateMove(Move move, Game game) {
+        Piece piece = game.getPieceAt(move.getStart());
+        if (piece == null) return false; // No piece at the start position
+        
+        List<int[]> possibleMoves = piece.getPossibleMoves(game);
+        for (int[] pos : possibleMoves) {
+            if (pos[0] == move.getEnd()[0] && pos[1] == move.getEnd()[1]) {
+                return true;
+            }
+        }
         return false;
     }
 
-    // Determine and enforce turn order
-    public Player determineTurnOrder(List<Player> players) {
-        return null;
+    // turn order
+    public User determineTurnOrder(List<User> users) {
+        return users.get(0); // assuming turn order is based on the list index
     }
 
-    // Check and declare game status (win, loss, draw)
+    // game status (win, loss, draw)
     public GameStatus checkGameStatus(Game game) {
+        // check the game status based on pieces left, checkmate, etc.
+        // returning ONGOING for now
         return GameStatus.ONGOING;
     }
-
-    // List options of possible start game states
-    public List<GameState> listStartGameStates() {
-        return null;
-    }
-    */
-
 }
+    

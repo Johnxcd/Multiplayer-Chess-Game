@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import com.tco.usermanagement.Profile;
+import com.tco.usermanagement.History;
 import com.tco.gameplaying.Match;
-
-
+import com.tco.gameplaying.Rules;
+import java.util.List;
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -41,9 +43,12 @@ public class TestPlatform {
     }
 
     @Test
-    @DisplayName("set: Match changes when set.")
+    @DisplayName("johnh9 test: Match changes when set.")
     public void testMatchSet() {
-        Match match = new Match();
+        List<User> users = new ArrayList<>();
+        Rules rules = new Rules();
+        History history = new History();
+        Match match = new Match(users, history, rules);
         platform.setMatch(match);
         assertNotEquals(platform.getMatch(), null);
     }
