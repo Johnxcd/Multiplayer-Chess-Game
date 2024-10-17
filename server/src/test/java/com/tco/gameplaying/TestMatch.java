@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import com.tco.gamemanagement.User;
-import com.tco.usermanagement.History;
 import com.tco.gameplaying.Rules;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +15,9 @@ public class TestMatch {
 
     @BeforeEach
     public void setUp() {
-        List<User> users = new ArrayList<>();
+        User[] users = [null, null];
         Rules rules = new Rules();
-        History history = new History();
-        match = new Match(users, history, rules);
+        match = new Match(users, rules);
     }
 
     @Test

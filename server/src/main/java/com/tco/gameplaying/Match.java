@@ -8,38 +8,19 @@ import com.tco.gamemanagement.Game;
 import com.tco.gamemanagement.GameStatus;
 
 public class Match extends Game {
-    private List<User> users;
-    private History history;
-    private Rules rules;
-    private Piece[][] board;
+    private Rules rules;        // rule set we abide by
+    private GameStatus status;  // game status {ONGOING, DRAW, CHECKMATE}
+    private List<Move> moves;   // list of all moves made to date
 
-    public Match(List<User> users, History history, Rules rules) {
-        this.users = users;
-        this.history = history;
+    public Match(User[] users, Rules rules) {
+        super(users);
         this.rules = rules;
-        createBoard();
+        this.moves = new ArrayList<Move>();
+        this.status = GameStatus.ONGOING;
     }
 
-    public void createBoard() {
-        // initialize the board with pieces in starting positions
-        board = new Piece[8][8];
-
-        // place pawns
-        for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(Color.WHITE, new int[]{1, i});
-            board[6][i] = new Pawn(Color.BLACK, new int[]{6, i});
-        }
-        
-        board[0][0] = new Rook(Color.WHITE, new int[]{0, 0});
-        board[0][7] = new Rook(Color.WHITE, new int[]{0, 7});
-        board[7][0] = new Rook(Color.BLACK, new int[]{7, 0});
-        board[7][7] = new Rook(Color.BLACK, new int[]{7, 7});
-        board[0][1] = new Knight(Color.WHITE, new int[]{0, 1});
-        board[0][6] = new Knight(Color.WHITE, new int[]{0, 6});
-        board[7][1] = new Knight(Color.BLACK, new int[]{7, 1});
-        board[7][6] = new Knight(Color.BLACK, new int[]{7, 6});
-        // add other pieces
-    }
+    public GameStatus getStatus() { return this.status; }
+    public void setStatus(GameStatus status) { this.status = status; }
 
     public boolean makeMove(Move move) {
         if (rules.validateMove(move, this)) {
@@ -50,9 +31,10 @@ public class Match extends Game {
 
             // update piece position
             board[end[0]][end[1]].setPos(end);
+            this.addMove(move);
 
             // check game status
-            if (rules.checkGameStatus(this) != GameStatus.ONGOING) {
+            if (rules.checkGameStatus(this, board) != GameStatus.ONGOING) {
                 endMatch();
             }
             return true;

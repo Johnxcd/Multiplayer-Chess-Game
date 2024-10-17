@@ -4,6 +4,7 @@ import java.util.List;
 import com.tco.gamemanagement.Game;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
+import com.tco.gameplaying.Piece;
 
 public class Rules {
 
@@ -26,7 +27,7 @@ public class Rules {
     }
 
     // game status (win, loss, draw)
-    public GameStatus checkGameStatus(Game game) {
+    public GameStatus checkGameStatus(Game game, Piece[][] board) {
         // check the game status based on pieces left, checkmate, etc.
         // returning ONGOING for now
         return GameStatus.ONGOING;

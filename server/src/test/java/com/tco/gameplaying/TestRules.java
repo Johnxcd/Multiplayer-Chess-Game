@@ -9,7 +9,6 @@ import java.util.List;
 import com.tco.gamemanagement.Game;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
-import com.tco.usermanagement.History;
 
 public class TestRules {
     private Rules rules;
@@ -21,12 +20,9 @@ public class TestRules {
     @BeforeEach
     public void setUp() {
         rules = new Rules();
-        users = new ArrayList<>();
         user1 = new User("user1");
         user2 = new User("user2");
-        users.add(user1);
-        users.add(user2);
-        game = new Match(users, new History(), rules);
+        game = new Match([user1, user2], rules);
     }
 
     @Test
