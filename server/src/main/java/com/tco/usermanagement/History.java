@@ -27,7 +27,7 @@ public class History {
     public int[] getRecord() {
         // ensure the record is 100% accurate every call
         this.forceUpdate();
-        
+
         int[] record = new int[]{0, 0, 0, 0, 0};
         record[0] = this.record.get(GameStatus.CHECKMATE); // W
         record[2] = this.record.get(GameStatus.DRAW);      // D
@@ -63,17 +63,16 @@ public class History {
     // A match can update it's status without history knowing.
     // The record must reflect the accurate representation of w/l/d/o
     private void forceUpdate() {
-        int[] record = countRecord();
-        this.record.put(GameStatus.ONGOING, record[0]);
-        this.record.put(GameStatus.DRAW, record[1]);
-        this.record.put(GameStatus.ONGOING, record[2]);
+        this.record.put(GameStatus.ONGOING, 0);
+        this.record.put(GameStatus.DRAW, 0);
+        this.record.put(GameStatus.ONGOING, 0);
+
+        this.countRecord();
     }
 
-    private int[] countRecord() {
-        int[] record = new int[]{0, 0, 0};
+    private void countRecord() {
         for (Match match : this.matches) {
             updateRecord(match, 1);
         }
-        return record;
     }
 }
