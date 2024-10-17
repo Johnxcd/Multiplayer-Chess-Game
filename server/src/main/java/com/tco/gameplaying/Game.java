@@ -23,7 +23,7 @@ public abstract class Game {
     public Piece[][] getBoard() { return this.board; }
 
     
-    public void createBoard() {
+    private void createBoard() {
         // initialize the board with pieces in starting positions
         board = new Piece[8][8];
 
