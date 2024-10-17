@@ -1,4 +1,5 @@
 package com.tco.usermanagement;
+import com.tco.gameplaying.Match;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,33 +13,77 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class TestHistory {
 
     private History history;
+    private Match match;
 
     @BeforeEach
     public void createHistoryForTestCases() {
         history = new History();
+        match  = new Match(null, null, null);
     }
 
     @Test
-    @DisplayName("base: New history should be empty")
+    @DisplayName("Dureke: New history should be empty")
     public void testHistoryRecord() {
-        assertTrue(Arrays.equals(new int[]{0, 0, 0, 0}, history.getRecord()));
+        assertTrue(Arrays.equals(new int[]{0, 0, 0, 0, 0}, history.getRecord()));
     }
 
-    // @Test
-    // @DisplayName("base: Adding a match updates existing record")
-    // public void testAddingMatch() {
-    //     Match match = new Match();
-    //     match.setGameStatus("Loss");
+    // setGameStatus needs to be updated in match.java for these tests to work
 
-    //     assertTrue(Arrays.equals(new int[]{0, 1, 0, 0}, history.getRecord()));
+    // @Test
+    // @DisplayName("Dureke: Adding a win match updates existing record")
+    // public void testAddingMatch() {
+    //     match.setGameStatus(GameStatus.CHECKMATE);
+    //     history.add(match);
+
+    //     assertTrue(Arrays.equals(new int[]{1, 0, 0, 0, 1}, history.getRecord()));
+    // }
+
+    // // TODO: ensure a loss for a specific user is reflected in their record 
+    // @Test
+    // @DisplayName("Dureke: Adding a LOSS match updates existing record")
+    // public void testAddingMatch() {
+    //     match.setGameStatus(GameStatus.CHECKMATE); 
+
+    //     history.add(match);
+
+    //     assertTrue(Arrays.equals(new int[]{0, 1, 0, 0, 1}, history.getRecord()));
+    // }
+
+    // @Test
+    // @DisplayName("Dureke: Adding a DRAW match updates existing record")
+    // public void testAddingMatch() {
+    //     match.setGameStatus(GameStatus.DRAW);
+    //     history.add(match);
+
+    //     assertTrue(Arrays.equals(new int[]{0, 0, 1, 0, 1}, history.getRecord()));
+    // }
+
+    // @Test
+    // @DisplayName("Dureke: Adding an ONGOING match updates existing record")
+    // public void testAddingMatch() {
+    //     match.setGameStatus(GameStatus.ONGOING);
+    //     history.add(match);
+
+    //     assertTrue(Arrays.equals(new int[]{0, 0, 0, 1, 1}, history.getRecord()));
     // }
 
     // @Test 
-    // @DisplayName("base: calling update history will incorrect action should not update the record")
+    // @DisplayName("Dureke: removing a match from the history updates record")
     // public void testUpdateHistory() {
-    //     Match match = new Match();
-    //     match.setGameStatus("Loss");
-    //     history.updateHistory(match, "wrong");
-    //     assertFalse(Arrays.equals(new int[]{0, 1, 0, 0}, history.getRecord()));
+    //     match.setGameStatus(GameStatus.DRAW);
+    //     history.add(match);
+    //     assertTrue(Arrays.equals(new int[]{0, 0, 1, 0, 1}, history.getRecord()));
+    //     history.remove(match);
+    //     assertTrue(Arrays.equals(new int[]{0, 0, 0, 0, 0}, history.getRecord()));
+    // }
+
+    // @Test 
+    // @DisplayName("Dureke: updating match record without history knowing always reports accurately")
+    // public void testUpdateHistory() {
+    //     match.setGameStatus(GameStatus.ONGOING);
+    //     history.add(match);
+    //     assertTrue(Arrays.equals(new int[]{0, 0, 0, 1, 1}, history.getRecord()));
+    //     match.setGameStatus(GameStatus.DRAW);
+    //     assertTrue(Arrays.equals(new int[]{0, 0, 1, 0, 1}, history.getRecord()));
     // }
 }
