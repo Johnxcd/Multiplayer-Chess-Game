@@ -27,4 +27,29 @@ public class TestGame {
         int[] invalidPos = {-1, 8};
         assertFalse(game.isPositionOnBoard(invalidPos));
     }
+
+    @Test
+    @DisplayName("Dureke: Test createBoard / new Match")
+    public void testCreateBoard() {
+        Piece exampleRook = new Rook(Color.WHITE, new int[]{0, 0});
+        Piece actualPiece = game.getPieceAt(new int[]{0, 0});
+
+        assertEquals(PieceType.ROOK, actualPiece.getType());
+        assertEquals(exampleRook.getColor(), actualPiece.getColor());
+    }
+
+    @Test
+    @DisplayName("Dureke: Test getUsers()")
+    public void testGetUsers() {
+        assertEquals(game.getUsers()[0].getUsername(), "user1");
+    }
+
+    @Test
+    @DisplayName("Dureke: Test getBoard()")
+    public void testGetBoard() {
+        Piece[][] board = game.getBoard();
+
+        assertEquals(PieceType.ROOK, board[0][0].getType());
+        assertEquals(Color.WHITE, board[0][0].getColor());
+    }
 }
