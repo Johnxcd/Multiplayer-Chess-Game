@@ -44,7 +44,7 @@ public class TestPlatform {
     @Test
     @DisplayName("johnh9 test: Match changes when set.")
     public void testMatchSet() {
-        User[] users = [null, null];
+        User[] users = {null, null};
         Rules rules = new Rules();
         Match match = new Match(users, rules);
         platform.setMatch(match);

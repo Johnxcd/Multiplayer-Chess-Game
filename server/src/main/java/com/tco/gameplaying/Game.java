@@ -1,10 +1,9 @@
-package com.tco.gamemanagement;
+package com.tco.gameplaying;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.tco.misc.*;
-import com.tco.gameplaying.Piece;
-import com.tco.gameplaying.Move;
+// import com.tco.gameplaying.Piece;
+// import com.tco.gameplaying.Move;
+import com.tco.gamemanagement.User;
 
 public abstract class Game {
     
@@ -43,10 +42,6 @@ public abstract class Game {
         board[7][1] = new Knight(Color.BLACK, new int[]{7, 1});
         board[7][6] = new Knight(Color.BLACK, new int[]{7, 6});
         // add other pieces
-    }
-
-    public void addMove(Move move){
-        this.moves.add(move);
     }
 
     public void sendNotification(User user){

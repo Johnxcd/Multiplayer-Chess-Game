@@ -1,26 +1,30 @@
 package com.tco.gameplaying;
 
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import com.tco.gamemanagement.User;
-import com.tco.usermanagement.History;
-import com.tco.gameplaying.Rules;
-import com.tco.gamemanagement.Game;
 import com.tco.gamemanagement.GameStatus;
 
 public class Match extends Game {
     private Rules rules;        // rule set we abide by
     private GameStatus status;  // game status {ONGOING, DRAW, CHECKMATE}
-    private List<Move> moves;   // list of all moves made to date
+    private List<Entry<Piece, Move>> moves;   // list of all moves made to date
 
     public Match(User[] users, Rules rules) {
         super(users);
         this.rules = rules;
-        this.moves = new ArrayList<Move>();
+        this.moves = new ArrayList<>();
         this.status = GameStatus.ONGOING;
     }
 
     public GameStatus getStatus() { return this.status; }
     public void setStatus(GameStatus status) { this.status = status; }
+    public void addMove(Piece piece, Move move) {
+        SimpleEntry<Piece, Move> entry = new SimpleEntry<>(piece, move);
+        moves.add(entry);
+    }
 
     public boolean makeMove(Move move) {
         if (rules.validateMove(move, this)) {
@@ -31,7 +35,7 @@ public class Match extends Game {
 
             // update piece position
             board[end[0]][end[1]].setPos(end);
-            this.addMove(move);
+            this.addMove(getPieceAt(start), move);
 
             // check game status
             if (rules.checkGameStatus(this, board) != GameStatus.ONGOING) {
@@ -54,7 +58,4 @@ public class Match extends Game {
         //TODO: fill in
     }
 
-    public void saveToHistory(List<User> users, History history) {
-        //TODO: fill in
-    }
 }

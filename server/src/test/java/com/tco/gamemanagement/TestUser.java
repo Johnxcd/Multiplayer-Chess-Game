@@ -22,7 +22,7 @@ public class TestUser {
         user1 = new User("user1");
         user2 = new User("user2");
         profile = new Profile();
-        User[] users = [user1, user2];
+        User[] users = {user1, user2};
         Rules rules = new Rules();
         match = new Match(users, rules);
         invitation = new Invitation() {

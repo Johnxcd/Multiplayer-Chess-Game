@@ -1,29 +1,22 @@
-package com.tco.gamemanagement;
+package com.tco.gameplaying;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import com.tco.gameplaying.Piece;
 import static org.junit.jupiter.api.Assertions.*;
+import com.tco.gamemanagement.User;
 
 public class TestGame {
     private Game game;
-
-    private class GameTest extends Game {
-        @Override
-        public Piece getPieceAt(int[] position) {
-            return null; // implement as needed for testing
-        }
-
-        @Override
-        public boolean isPositionOnBoard(int[] position) {
-            return position[0] >= 0 && position[0] < 8 && position[1] >= 0 && position[1] < 8;
-        }
-    }
+    private Rules rules;
 
     @BeforeEach
     public void setUp() {
-        game = new GameTest();
+        User user1 = new User("user1");
+        User user2 = new User("user2");
+        rules = new Rules();
+        game = new Match(new User[]{user1, user2}, rules);
     }
 
     @Test
