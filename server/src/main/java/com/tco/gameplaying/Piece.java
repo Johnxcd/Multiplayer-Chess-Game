@@ -2,6 +2,7 @@ package com.tco.gameplaying;
 
 import com.tco.gameplaying.Color;
 import com.tco.gameplaying.PieceType;
+import com.tco.gamemanagement.Game;
 import java.util.List;
 
 public abstract class Piece{

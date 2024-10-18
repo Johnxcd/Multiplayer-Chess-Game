@@ -2,6 +2,7 @@ package com.tco.gameplaying;
 
 import java.util.List;
 import java.util.ArrayList;
+import com.tco.gamemanagement.Game;
 
 public class Pawn extends Piece {
     public Pawn(Color color, int[] position) {

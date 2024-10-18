@@ -2,6 +2,7 @@ package com.tco.gameplaying;
 
 import java.util.List;
 import java.util.ArrayList;
+import com.tco.gamemanagement.Game;
 
 public class Queen extends Piece{
     public Queen(Color color, int[] position){

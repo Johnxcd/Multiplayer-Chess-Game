@@ -1,7 +1,11 @@
-package com.tco.gameplaying;
+package com.tco.gamemanagement;
 
 import com.tco.misc.*;
-import com.tco.gamemanagement.User;
+import com.tco.gameplaying.Color;
+import com.tco.gameplaying.Piece;
+import com.tco.gameplaying.Rook;
+import com.tco.gameplaying.Pawn;
+import com.tco.gameplaying.Knight;
 
 public abstract class Game {
     

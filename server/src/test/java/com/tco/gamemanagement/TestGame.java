@@ -1,11 +1,17 @@
-package com.tco.gameplaying;
+package com.tco.gamemanagement;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import com.tco.gameplaying.Color;
 import com.tco.gameplaying.Piece;
+import com.tco.gameplaying.Rook;
+import com.tco.gameplaying.Pawn;
+import com.tco.gameplaying.Knight;
+import com.tco.gameplaying.Rules;
+import com.tco.gameplaying.Match;
+import com.tco.gameplaying.PieceType;
 import static org.junit.jupiter.api.Assertions.*;
-import com.tco.gamemanagement.User;
 
 public class TestGame {
     private Game game;

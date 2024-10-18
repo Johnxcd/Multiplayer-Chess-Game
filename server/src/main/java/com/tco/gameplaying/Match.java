@@ -6,6 +6,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
+import com.tco.gamemanagement.Game;
 
 public class Match extends Game {
     private Rules rules;        // rule set we abide by

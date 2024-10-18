@@ -3,6 +3,7 @@ package com.tco.gameplaying;
 import java.util.List;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
+import com.tco.gamemanagement.Game;
 
 public class Rules {
 
