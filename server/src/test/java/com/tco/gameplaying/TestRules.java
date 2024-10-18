@@ -6,27 +6,23 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
-import com.tco.gamemanagement.Game;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
-import com.tco.usermanagement.History;
 
 public class TestRules {
     private Rules rules;
     private Match game;
     private Move move;
     private User user1, user2;
-    private List<User> users;
+    private User[] users;
 
     @BeforeEach
     public void setUp() {
         rules = new Rules();
-        users = new ArrayList<>();
         user1 = new User("user1");
         user2 = new User("user2");
-        users.add(user1);
-        users.add(user2);
-        game = new Match(users, new History(), rules);
+        users = new User[]{user1, user2};
+        game = new Match(users, rules);
     }
 
     @Test
@@ -50,6 +46,6 @@ public class TestRules {
     @Test
     @DisplayName("johnh9 test: Test Game Status Check")
     public void testCheckGameStatus() {
-        assertEquals(GameStatus.ONGOING, rules.checkGameStatus(game));
+        assertEquals(GameStatus.ONGOING, rules.checkGameStatus(game, game.getBoard()));
     }
 }

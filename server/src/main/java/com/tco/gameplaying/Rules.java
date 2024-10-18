@@ -1,9 +1,9 @@
 package com.tco.gameplaying;
 
 import java.util.List;
-import com.tco.gamemanagement.Game;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
+import com.tco.gamemanagement.Game;
 
 public class Rules {
 
@@ -21,12 +21,12 @@ public class Rules {
     }
 
     // turn order
-    public User determineTurnOrder(List<User> users) {
-        return users.get(0); // assuming turn order is based on the list index
+    public User determineTurnOrder(User[] users) {
+        return users[0]; // assuming turn order is based on the list index
     }
 
     // game status (win, loss, draw)
-    public GameStatus checkGameStatus(Game game) {
+    public GameStatus checkGameStatus(Game game, Piece[][] board) {
         // check the game status based on pieces left, checkmate, etc.
         // returning ONGOING for now
         return GameStatus.ONGOING;
