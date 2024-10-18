@@ -1,8 +1,6 @@
 package com.tco.gameplaying;
 
 import com.tco.misc.*;
-// import com.tco.gameplaying.Piece;
-// import com.tco.gameplaying.Move;
 import com.tco.gamemanagement.User;
 
 public abstract class Game {
