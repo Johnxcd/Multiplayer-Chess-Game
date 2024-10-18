@@ -52,4 +52,10 @@ public class TestGame {
         assertEquals(PieceType.ROOK, board[0][0].getType());
         assertEquals(Color.WHITE, board[0][0].getColor());
     }
+
+    @Test
+    @DisplayName("userID: test sendNotification()")
+    public void testSendNotification() {
+        assertEquals(game.sendNotification(user1), null);
+    }
 }
