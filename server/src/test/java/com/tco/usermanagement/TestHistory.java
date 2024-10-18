@@ -1,5 +1,7 @@
 package com.tco.usermanagement;
 import com.tco.gameplaying.Match;
+import com.tco.gameplaying.Rules;
+import com.tco.gamemanagement.User;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +20,10 @@ public class TestHistory {
     @BeforeEach
     public void createHistoryForTestCases() {
         history = new History();
-        match  = new Match(null, null, null);
+        User user1 = new User("user1");
+        User user2 = new User("user2");
+        Rules rules = new Rules();
+        match  = new Match(new User[]{user1, user2}, rules);
     }
 
     @Test
