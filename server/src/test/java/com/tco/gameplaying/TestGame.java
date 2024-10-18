@@ -53,9 +53,10 @@ public class TestGame {
         assertEquals(Color.WHITE, board[0][0].getColor());
     }
 
-    @Test
-    @DisplayName("userID: test sendNotification()")
-    public void testSendNotification() {
-        assertEquals(game.sendNotification(user1), null);
-    }
+    // @Test
+    // @DisplayName("userID: test sendNotification()")
+    // public void testSendNotification() {
+    //     User user3 = new User("user3");
+    //     assertEquals(game.sendNotification(user3), null);
+    // }
 }

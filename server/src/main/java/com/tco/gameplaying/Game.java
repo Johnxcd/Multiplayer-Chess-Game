@@ -44,8 +44,8 @@ public abstract class Game {
         // add other pieces
     }
 
-    public void sendNotification(User user){
-        //nothing yet
-    }
+    // public void sendNotification(User user){
+    //     //nothing yet
+    // }
 
 }
