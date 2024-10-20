@@ -1,0 +1,34 @@
+{
+    "$id": "https://example.com/address.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "move",
+    "description": "move request/response",
+    "type": "object",
+    "properties": {
+    "requestType": {
+        "description":"the TIP object type should be move",
+        "type":"string",
+        "pattern":"^move$"
+      },
+    "from": {
+        "description": "coordinates to move from",
+        "type": "array",
+        "prefixItems": [
+            { "type": "integer"},
+            { "type": "integer"}
+        ],
+        "items":false
+      },
+    "to": {
+        "description": "coordinates to move to",
+        "type": "array",
+        "prefixItems": [
+            { "type": "integer"},
+            { "type": "integer"}
+        ],
+        "items":false
+      }
+    },
+    "required":["requestType","from","to"],
+    "additionalProperties": false
+}
