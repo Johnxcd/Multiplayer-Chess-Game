@@ -55,7 +55,6 @@ public class Match extends Game {
         return board[position[0]][position[1]];
     }
 
-
     public boolean isPositionOnBoard(int[] position) {
         return position[0] >= 0 && position[0] < 8 && position[1] >= 0 && position[1] < 8;
     }
