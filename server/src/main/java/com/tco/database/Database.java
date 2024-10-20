@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 import com.tco.gamemanagement.User;
 
 import java.sql.Connection;
@@ -19,7 +20,10 @@ public class Database {
     private PreparedStatement nameStatement = null;
     private PreparedStatement countStatement = null;
     private Statement test = null;
+
     private final static String TABLE = "users";
+	private final static String COLUMNS = "uuid,username,email";
+
     private static Logger log = LoggerFactory.getLogger(Database.class);
 
     public Database() {
@@ -29,6 +33,7 @@ public class Database {
         } catch (SQLException se) {
             log.error("SQL Exception: " + se.getMessage());
         }
+	}
 
         static List<User> users(String match, Integer limit) throws Exception {
 			String sql      = Select.match(match, limit);
@@ -54,11 +59,11 @@ public class Database {
 			ArrayList<User> userList = new ArrayList<>();
 
 			while (results.next()) {
-				User user = new User();
+				User user = null;
 				for (String col: cols) {
                     switch (col) {
                         case "username":
-                            user.setUsername(results.getString(col));
+                            //user.setUsername(results.getString(col));
                             break;
                         case "email":
                             //user.setEmail(results.getString(col));
@@ -80,6 +85,25 @@ public class Database {
 			throw new Exception("No count results in found query.");
 		}
 
+		static class Select {
+			static String match(String match, int limit) {
+				return statement(match, "DISTINCT " + COLUMNS, "LIMIT " + limit);
+			}
+	
+			static String found(String match) {
+				return statement(match, "COUNT(*) AS count ", "");
+			}
+	
+			static String statement(String match, String data, String limit) {
+				return "SELECT "
+					+ data
+					+ " FROM " + TABLE
+					+ " WHERE name LIKE \"%" + match + "%\" "
+					+ limit
+					+ " ;";
+			}
+		}
+
         static Integer found(String match) throws Exception {
 			String sql = Select.found(match);
 			try (
@@ -95,5 +119,3 @@ public class Database {
 		}
 
     }   
-
-}
