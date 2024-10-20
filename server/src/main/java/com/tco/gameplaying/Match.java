@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.UUID;
 import com.tco.gamemanagement.User;
 import com.tco.gamemanagement.GameStatus;
 import com.tco.gamemanagement.Game;
@@ -12,14 +13,17 @@ public class Match extends Game {
     private Rules rules;        // rule set we abide by
     private GameStatus status;  // game status {ONGOING, DRAW, CHECKMATE}
     private List<Entry<Piece, Move>> moves;   // list of all moves made to date
+    private String matchID;
 
     public Match(User[] users, Rules rules) {
         super(users);
+        this.matchID = UUID.randomUUID().toString();
         this.rules = rules;
         this.moves = new ArrayList<>();
         this.status = GameStatus.ONGOING;
     }
 
+    public String getMatchID() { return matchID; }
     public GameStatus getStatus() { return this.status; }
     public void setStatus(GameStatus status) { this.status = status; }
     public void addMove(Piece piece, Move move) {
