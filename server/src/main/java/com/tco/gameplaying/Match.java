@@ -52,11 +52,13 @@ public class Match extends Game {
     }
 
     public Piece getPieceAt(int[] position) {
-        return board[position[0]][position[1]];
+        Piece piece = board[position[0]][position[1]];
+        return piece;
     }
 
-    public boolean isPositionOnBoard(int[] position) {
-        return position[0] >= 0 && position[0] < 8 && position[1] >= 0 && position[1] < 8;
+
+    public boolean isPositionOnBoard(int[] pos) {
+        return pos[0] >= 0 && pos[0] < 8 && pos[1] >= 0 && pos[1] < 8;
     }
 
     public void endMatch() {
