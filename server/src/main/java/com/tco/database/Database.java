@@ -63,10 +63,10 @@ public class Database {
 				for (String col: cols) {
                     switch (col) {
                         case "username":
-                            //user.setUsername(results.getString(col));
+                            user.setUsername(results.getString(col));
                             break;
                         case "email":
-                            //user.setEmail(results.getString(col));
+                            user.setEmail(results.getString(col));
                             break;
                         default:
                             //nothing
