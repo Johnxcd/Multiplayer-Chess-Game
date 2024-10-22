@@ -10,6 +10,10 @@
         "type":"string",
         "pattern":"^move$"
       },
+    "uuid": {
+      "description":"the UUID of the match",
+      "type":"string"
+    },
     "from": {
         "description": "coordinates to move from",
         "type": "array",
@@ -29,6 +33,6 @@
         "items":false
       }
     },
-    "required":["requestType","from","to"],
+    "required":["requestType","uuid","from","to"],
     "additionalProperties": false
 }
