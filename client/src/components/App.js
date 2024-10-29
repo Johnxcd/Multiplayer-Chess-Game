@@ -1,6 +1,6 @@
 import React from 'react';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import Page from './Page';
+import HomePage from './HomePage';
 
 export default function App() {
     return (
@@ -17,5 +17,5 @@ export const HookCaller = () => {
         enqueueSnackbar(message, { variant: variant })
     }
 
-    return <Page showMessage={showMessage} />;
+    return <HomePage showMessage={showMessage} />;
 };
