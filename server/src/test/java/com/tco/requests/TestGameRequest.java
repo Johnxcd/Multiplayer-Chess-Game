@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestGameRequest {
 
     @Test
-    @DisplayName("Test creating a game request")
+    @DisplayName("Johnh9 test: Test creating a game request")
     public void testCreateGameRequest() {
         GameRequest request = new GameRequest();
         request.setGameId("game123");
@@ -20,7 +20,7 @@ public class TestGameRequest {
     }
 
     @Test
-    @DisplayName("Test getting game status")
+    @DisplayName("Johnh9 test: Test getting game status")
     public void testGetGameStatus() {
         GameRequest request = new GameRequest();
         request.setGameId("game123");
