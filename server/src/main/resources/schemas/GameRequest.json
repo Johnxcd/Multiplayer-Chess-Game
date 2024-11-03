@@ -1,0 +1,32 @@
+{
+    "$id": "https://example.com/game.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "game",
+    "description": "game request/response",
+    "type": "object",
+    "properties": {
+      "requestType": {
+        "description": "the object type should be game",
+        "type": "string",
+        "pattern": "^game$"
+      },
+      "gameId": {
+        "description": "the ID of the game",
+        "type": "string"
+      },
+      "action": {
+        "description": "the action to perform (e.g., create, getStatus)",
+        "type": "string"
+      },
+      "users": {
+        "description": "list of users",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": ["requestType", "action"],
+    "additionalProperties": true
+  }
+  
