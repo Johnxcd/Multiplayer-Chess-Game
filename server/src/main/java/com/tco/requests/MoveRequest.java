@@ -83,6 +83,7 @@ public class MoveRequest extends Request {
         return possibleMoves;
     }
 
+    // temporary in memory storage, can be changed to use database
     public static void setMatchStorage(Map<String, Match> storage) {
         matchStorage = storage;
     }
