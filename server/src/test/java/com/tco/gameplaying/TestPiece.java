@@ -41,4 +41,39 @@ public class TestPiece {
         assertEquals(Color.WHITE, piece.getColor());
         assertEquals(0, piece.getPos()[0]);
     }
+
+    @Test
+    @DisplayName("johnh9 test: Test get and set position")
+    public void testGetSetPosition() {
+        int[] newPosition = {1, 1};
+        piece.setPos(newPosition);
+        assertArrayEquals(newPosition, piece.getPos());
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test abstract method implementation")
+    public void testAbstractMethodImplementation() {
+        List<int[]> possibleMoves = piece.getPossibleMoves(null);
+        assertNotNull(possibleMoves);
+        assertTrue(possibleMoves.isEmpty());
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test Edge Case Positions")
+    public void testEdgeCasePositions() {
+        int[] negativePosition = {-1, -1};
+        piece.setPos(negativePosition);
+        assertArrayEquals(negativePosition, piece.getPos());
+
+        int[] outOfBoundsPosition = {8, 8};
+        piece.setPos(outOfBoundsPosition);
+        assertArrayEquals(outOfBoundsPosition, piece.getPos());
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test Null Position")
+    public void testNullPosition() {
+        piece.setPos(null);
+        assertNull(piece.getPos());
+    }
 }
