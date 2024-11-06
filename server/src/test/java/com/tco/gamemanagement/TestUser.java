@@ -37,6 +37,16 @@ public class TestUser {
             }
 
             @Override
+            public void acceptInvitation(Invitation invitation) {
+                // Implementation for test
+            }
+
+            @Override
+            public void rejectInvitation(Invitation invitation) {
+                // Implementation for test
+            }
+
+            @Override
             public void notifyAllPlayers() {
                 // Implementation for test
             }
