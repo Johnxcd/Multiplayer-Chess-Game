@@ -56,7 +56,6 @@ public class User implements Invitation{
       return invitations;
   }
 
-
   public static void sendInvitation(String username) {
       for (User user : users) {
           if (user.getUsername().equals(username)) {
@@ -92,14 +91,16 @@ public class User implements Invitation{
     logger.info("Profile updated for user: " + username);
   }
 
+  @Override
   public void acceptInvitation(Invitation invitation) {
     invitations.add(invitation);
-    logger.info("Invitation accepted by user: " + username);
+    logger.info(invitation.inviteMessage + username);
   }
 
+  @Override
   public void rejectInvitation(Invitation invitation) {
     // Do something
-    logger.info("Invitation rejected by user: " + username);
+    logger.info(invitation.rejectedMessage + username);
   }
 
   public void joinMatch(Match match) {

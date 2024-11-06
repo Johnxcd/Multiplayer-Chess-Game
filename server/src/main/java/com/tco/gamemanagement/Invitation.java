@@ -2,26 +2,18 @@ package com.tco.gamemanagement;
 import com.tco.gameplaying.Match;
 
 interface Invitation extends Notification{
-    public String inviteMessage = null;
-    public String rejectedMessage = null;
+    public String inviteMessage = "Invitation accepted by user: ";
+    public String rejectedMessage = "Invitation rejected by user: ";
     // private Notification notification; //NEED TO GET NOTIFICATION
 
     public void sendNotification(User user);
 
     public void onInvitation();
 
-    // public void sendInviteToPlayer(User user, Match match) { //NEED TO GET USER && MATCH
-    //     return;
-    // }
+    public void acceptInvitation(Invitation invitation);
 
-    // public void rejectedInvitation() {
-    //     return;
-        
-    // }
+    public void rejectInvitation(Invitation invitation);
 
-    // @Override
-    // public void nnotifyAllPlayers() {
-    //     return;
-
-    // }
+    @Override
+    public void notifyAllPlayers();
 }
