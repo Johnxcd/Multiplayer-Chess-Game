@@ -54,7 +54,7 @@ public class TestMatch {
         assertEquals(midPiece.getType(), PieceType.KNIGHT);
         assertEquals(endPiece.getType(), PieceType.BISHOP);
         
-        match.capturePiece(startPiece.getPos(), new int[] {0, 2}, midPiece.getPos());
+        match.capturePiece(startPiece.getPos(), endPiece.getPos(), midPiece.getPos());
 
         assertNull(match.getPieceAt(new int[] {0, 0}));
         assertNull(match.getPieceAt(new int[] {0, 1}));
