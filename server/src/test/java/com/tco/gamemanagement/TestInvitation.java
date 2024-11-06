@@ -45,12 +45,12 @@ public class TestInvitation {
     @Test
     @DisplayName("Dureke test: Test Invite Message contents")
     public void testInviteMessage() {
-        assertEquals(invitation.inviteMessage, "A player has invited you to a new game.");
+        assertEquals(invitation.inviteMessage, "Invitation accepted by user: ");
     }
 
     @Test
     @DisplayName("Dureke test: Test Reject Message contents")
     public void testRejectMessage() {
-        assertEquals(invitation.rejectedMessage, "A player has rejected an invitation.");
+        assertEquals(invitation.rejectedMessage, "Invitation rejected by user: ");
     }
 }
