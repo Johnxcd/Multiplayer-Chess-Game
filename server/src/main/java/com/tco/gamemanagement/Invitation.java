@@ -2,8 +2,8 @@ package com.tco.gamemanagement;
 import com.tco.gameplaying.Match;
 
 interface Invitation extends Notification{
-    public String inviteMessage = "A player has invited you to a new game.";
-    public String rejectedMessage = "A player has rejected an invitation.";
+    public String inviteMessage = "Invitation accepted by user: ";
+    public String rejectedMessage = "Invitation rejected by user: ";
     // private Notification notification; //NEED TO GET NOTIFICATION
 
     public void sendNotification(User user);

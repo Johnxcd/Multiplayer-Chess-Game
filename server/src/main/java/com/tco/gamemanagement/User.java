@@ -94,13 +94,13 @@ public class User implements Invitation{
   @Override
   public void acceptInvitation(Invitation invitation) {
     invitations.add(invitation);
-    logger.info("Invitation accepted by user: " + username);
+    logger.info(invitation.inviteMessage + username);
   }
 
   @Override
   public void rejectInvitation(Invitation invitation) {
     // Do something
-    logger.info("Invitation rejected by user: " + username);
+    logger.info(invitation.rejectedMessage + username);
   }
 
   public void joinMatch(Match match) {
