@@ -35,12 +35,14 @@ public class Match extends Game {
         if (rules.validateMove(move, this)) {
             int[] start = move.getStart();
             int[] end = move.getEnd();
-            board[end[0]][end[1]] = board[start[0]][start[1]];
-            board[start[0]][start[1]] = null; // clear the start position
 
-            // update piece position
-            board[end[0]][end[1]].setPos(end);
-            this.addMove(getPieceAt(start), move);
+            Piece startPiece = board[start[0]][start[1]];
+            Piece endPiece = board[end[0]][end[1]];
+            if (endPiece == null) {
+                this.capturePiece(start, end, null);
+            } // TODO: define castling conditions
+            
+            this.addMove(startPiece, move);
 
             // check game status
             if (rules.checkGameStatus(this, board) != GameStatus.ONGOING) {
@@ -49,6 +51,17 @@ public class Match extends Game {
             return true;
         }
         return false;
+    }
+
+    public void capturePiece(int[] start, int[] end, int[] enPassantCapture) {
+        board[end[0]][end[1]] = board[start[0]][start[1]];
+        board[end[0]][end[1]].setPos(end);
+
+        // If en passant, then this additional location must be cleared
+        if (enPassantCapture != null) {
+            board[enPassantCapture[0]][enPassantCapture[1]] = null;
+        } 
+        board[start[0]][start[1]] = null;
     }
 
     public Piece getPieceAt(int[] position) {

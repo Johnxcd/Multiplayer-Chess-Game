@@ -27,4 +27,37 @@ public class TestMatch {
     public void testMatchCreation() {
         assertNotNull(match);
     }
+
+    @Test
+    @DisplayName("Dureke test: Test capture Piece method") 
+    public void testCapturePiece() {
+        Piece startPiece = match.getPieceAt(new int[] {0, 0});
+        Piece endPiece = match.getPieceAt(new int[] {0, 1});
+
+        assertEquals(startPiece.getType(), PieceType.ROOK);
+        assertEquals(endPiece.getType(), PieceType.KNIGHT);
+        
+        match.capturePiece(startPiece.getPos(), endPiece.getPos(), null);
+
+        assertNull(match.getPieceAt(new int[] {0, 0}));
+        assertEquals(match.getPieceAt(new int[] {0, 1}).getType(), PieceType.ROOK);
+    }
+
+    @Test
+    @DisplayName("Dureke test: Test capture Piece method, en Passant exception") 
+    public void testCapturePieceEnPassant() {
+        Piece startPiece = match.getPieceAt(new int[] {0, 0});
+        Piece midPiece = match.getPieceAt(new int[] {0, 1});
+        Piece endPiece = match.getPieceAt(new int[] {0, 2});
+
+        assertEquals(startPiece.getType(), PieceType.ROOK);
+        assertEquals(midPiece.getType(), PieceType.KNIGHT);
+        assertEquals(endPiece.getType(), PieceType.BISHOP);
+        
+        match.capturePiece(startPiece.getPos(), endPiece.getPos(), midPiece.getPos());
+
+        assertNull(match.getPieceAt(new int[] {0, 0}));
+        assertNull(match.getPieceAt(new int[] {0, 1}));
+        assertEquals(match.getPieceAt(new int[] {0, 2}).getType(), PieceType.ROOK);
+    }
 }
