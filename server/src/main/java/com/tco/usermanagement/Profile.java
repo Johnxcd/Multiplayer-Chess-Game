@@ -4,16 +4,24 @@ import com.tco.gamemanagement.User;
 import com.tco.usermanagement.History;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
+import java.util.UUID;
 
 public class Profile {
-    private User user;
+    private String username;
+    private String email;
+    private String password;
     private String profileData;
     private History historyData;
     private String creationDate;
+    private UUID userId = null;
 
     public String getUserProfileData() {
         this.generateProfileData();
         return profileData;
+    }
+
+    public UUID getUserId(){
+        return userId;
     }
 
     public History getHistory() {
@@ -55,5 +63,22 @@ public class Profile {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();  
         return dtf.format(now);
+
     }    
+
+    public String getUsername() {
+        return userName;
+      }
+    
+      public void setUsername(String username) {
+        this.username = username;
+      }
+    
+      public String getEmail() {
+        return email;
+      }
+    
+      public void setEmail(String email) {
+        this.email = email;
+      }
 }

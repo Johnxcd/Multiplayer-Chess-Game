@@ -14,6 +14,10 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+
 public class Database {
 
     private Connection conn = null;
@@ -22,7 +26,7 @@ public class Database {
     private Statement test = null;
 
     private final static String TABLE = "users";
-	private final static String COLUMNS = "uuid,username,email";
+	private final static String COLUMNS = "uuid,users";
 
     private static Logger log = LoggerFactory.getLogger(Database.class);
 
@@ -35,7 +39,7 @@ public class Database {
         }
 	}
 
-        static List<User> users(String match, Integer limit) throws Exception {
+      public static List<User> users(String match, Integer limit) throws Exception {
 			String sql      = Select.match(match, limit);
 			String url      = Credential.url();
 			String user     = Credential.USER;
@@ -52,6 +56,52 @@ public class Database {
 			}
 		}
 
+		public static addUserDB(User user){
+
+			Gson gson = new Gson();
+
+			//Serialize the user object into a string for storage
+			//Most effienct way to get something quick
+			String jsonUser = gson.toJson(user);
+			UUID userId = user.getUserId();
+
+			String sql = "INSERT INTO " + TABLE + " (id, json) VALUES (?, ?)";
+				
+			try{
+				Connection conn    = DriverManager.getConnection(url, user, password);
+				PreparedStatement statement = conn.PreparedStatement(sql);
+
+				statement.setString(1, userId.toString());
+				statement.setString(2, jsonUser);
+				statement.executeUpdate();
+			}
+			catch( Exception e){
+				log.error("Failed to insert new user {} ", userId, e);
+			}
+		}
+
+		public static updateUserDB(User user){
+
+			Gson gson = new Gson();
+
+			String jsonUser = gson.toJson(user);
+			UUID userId = user.getUserId();
+			
+			String sql = "UPDATE " + TABLE + " (users) VALUES (?) WHERE uuid = ?";
+			
+			try{
+				Connection conn    = DriverManager.getConnection(url, user, password);
+				PreparedStatement statement = conn.PreparedStatement(sql);
+
+				statement.setString(1, jsonUser);
+				statement.setString(2, userId.toString());
+				statement.executeUpdate();
+			}
+			catch( Exception e){
+				log.error("Failed to update user {} ", userId, e);
+			}
+		}
+
         //TODO: Need better setters for user
         private static List<User> convertResultUser(ResultSet results, String columns) throws Exception {
 			int count = 0;
@@ -62,11 +112,12 @@ public class Database {
 				User user = null;
 				for (String col: cols) {
                     switch (col) {
-                        case "username":
-                            user.setUsername(results.getString(col));
+                        case "uuid":
+							//do nothing for now
+                            // user.setUsername(results.getString(col));
                             break;
-                        case "email":
-                            user.setEmail(results.getString(col));
+                        case "users":
+                            user = gson.fromJson(results.getString(col), User.class);
                             break;
                         default:
                             //nothing

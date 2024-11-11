@@ -7,45 +7,30 @@ import com.tco.usermanagement.Profile;
 import com.tco.gameplaying.Match;
 import com.tco.gamemanagement.Notification; 
 
-public class User implements Invitation{
+public class User extends Profile implements Invitation{
     
   private static final Logger logger = Logger.getLogger(User.class.getName());
   private static List<User> users = new ArrayList<>();
-  private String username;
-  private String email;
-  private String password;
-  private Profile profile;
   private List<Notification> notifications = new ArrayList<>();
   private List<Invitation> invitations = new ArrayList<>();
   private List<Match> matches = new ArrayList<>();
 
-  public User(String username) {
-    this.username = username;
+  public User(String username, String email, String password, String history, String creationDate, UUID userId) {
+    super.username = username;
+    super.email = email;
+    super.password = password;
+    super.history = history;
+    super.creationDate = creationDate;
+
+    if(super.userID != null){
+      super.userID = userID;
+    }
+
     users.add(this);
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
   
   public static List<User> getUsers() {
     return users;
-  }
-
-  public Profile getProfile() {
-    return this.profile;
   }
 
   public List<Match> getMatches() {
@@ -65,13 +50,13 @@ public class User implements Invitation{
   }
 
   public void register(String email, String password) {
-    this.email = email;
-    this.password = password;
+    super.email = email;
+    super.password = password;
     logger.info("User registered with email: " + email);
   }
 
   public User authenticate(String email, String password) {
-    if (this.email.equals(email) && this.password.equals(password)) {
+    if (super.email.equals(email) && super.password.equals(password)) {
         logger.info("User authenticated successfully.");
         return this;
     } else {
@@ -86,7 +71,8 @@ public class User implements Invitation{
   }
 
   public void updateProfile(Profile profile) {
-    this.profile = profile;
+    //only thing worth updating is history at this point
+    super.history = profile.history;
     // Do something
     logger.info("Profile updated for user: " + username);
   }
