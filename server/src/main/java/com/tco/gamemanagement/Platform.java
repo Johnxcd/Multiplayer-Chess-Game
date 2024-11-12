@@ -33,7 +33,6 @@ public class Platform {
         for (User user : User.getUsers()) {
             User authenticatedUser = user.authenticate(email, password);
             if (authenticatedUser != null) {
-                this.setProfile(authenticatedUser.getProfile());
                 return authenticatedUser;
             }
         }

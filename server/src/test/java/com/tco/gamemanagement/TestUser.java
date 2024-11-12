@@ -57,7 +57,7 @@ public class TestUser {
     @DisplayName("johnh9 test: Test user registration")
     public void testRegister() {
         user1.register("user1@example.com", "password123");
-        assertEquals("user1", user1.getUsername());
+        assertEquals("user1", user1.getUserName());
     }
 
     @Test

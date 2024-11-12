@@ -7,29 +7,37 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Profile {
-    private String username;
-    private String email;
-    private String password;
-    private String profileData;
-    private History historyData;
-    private String creationDate;
-    private UUID userId = null;
+    protected String userName;
+    protected String email;
+    protected String password;
+    protected String profileData;
+    protected History historyData;
+    protected String creationDate;
+    protected UUID userId = null;
 
     public String getUserProfileData() {
         this.generateProfileData();
-        return profileData;
+        return this.profileData;
     }
 
     public UUID getUserId(){
-        return userId;
+        return this.userId;
+    }
+
+    public void setUserId(UUID uuid){
+        this.userId = uuid;
+    }
+
+    public void createUserId(){
+        this.userId = UUID.randomUUID();
     }
 
     public History getHistory() {
-        return historyData;
+        return this.historyData;
     }
 
-    public void setHistroy(History history) {
-        historyData = history;
+    public void setHistory(History history) {
+        this.historyData = history;
     }
 
     private void displayDataGUI() {
@@ -59,6 +67,10 @@ public class Profile {
         return creationDate;
     }
 
+    public void setCreationDate(String time){
+        this.creationDate = time;
+    }
+
     public String getCurrentDate() {    
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();  
@@ -66,12 +78,12 @@ public class Profile {
 
     }    
 
-    public String getUsername() {
-        return userName;
+    public String getUserName() {
+        return this.userName;
       }
     
-      public void setUsername(String username) {
-        this.username = username;
+      public void setUserName(String userName) {
+        this.userName = userName;
       }
     
       public String getEmail() {
@@ -80,5 +92,13 @@ public class Profile {
     
       public void setEmail(String email) {
         this.email = email;
+      }
+
+      public void setPassword(String password){
+        this.password = password;
+      }
+
+      public String getPassword(){
+        return password;
       }
 }

@@ -38,7 +38,7 @@ public class GameRequest extends Request {
     private void createGame() {
         User[] gameUsers = new User[users.length];
         for (int i = 0; i < users.length; i++) {
-            gameUsers[i] = new User(users[i]);
+            gameUsers[i] = User.getUserByName(users[i]);
         }
         Match newMatch = new Match(gameUsers, new Rules());
         this.gameId = newMatch.getMatchID();
@@ -49,7 +49,7 @@ public class GameRequest extends Request {
     private void getGameStatus() throws BadRequestException {
         Match match = matchStorage.get(gameId);
         if (match != null) {
-            this.users = new String[]{match.getUsers()[0].getUsername(), match.getUsers()[1].getUsername()};
+            this.users = new String[]{match.getUsers()[0].getUserName(), match.getUsers()[1].getUserName()};
         } else {
             throw new BadRequestException("Game not found: " + gameId);
         }

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import com.tco.gamemanagement.User;
 
 import java.sql.Connection;
@@ -56,20 +57,24 @@ public class Database {
 			}
 		}
 
-		public static addUserDB(User user){
+		public static void addUserDB(User addUser){
 
 			Gson gson = new Gson();
+			String url      = Credential.url();
+			String user     = Credential.USER;
+			String password = Credential.PASSWORD;
 
 			//Serialize the user object into a string for storage
 			//Most effienct way to get something quick
-			String jsonUser = gson.toJson(user);
-			UUID userId = user.getUserId();
-
+			String jsonUser = gson.toJson(addUser);
+			UUID userId = addUser.getProfile().getUserId();
+			System.out.println("GSON " + jsonUser);
+			
 			String sql = "INSERT INTO " + TABLE + " (id, json) VALUES (?, ?)";
-				
+			System.out.println("SQL " + sql);
 			try{
 				Connection conn    = DriverManager.getConnection(url, user, password);
-				PreparedStatement statement = conn.PreparedStatement(sql);
+				PreparedStatement statement = conn.prepareStatement(sql);
 
 				statement.setString(1, userId.toString());
 				statement.setString(2, jsonUser);
@@ -80,18 +85,21 @@ public class Database {
 			}
 		}
 
-		public static updateUserDB(User user){
+		public static void updateUserDB(User userUpdate){
 
 			Gson gson = new Gson();
-
-			String jsonUser = gson.toJson(user);
-			UUID userId = user.getUserId();
+			String url      = Credential.url();
+			String user     = Credential.USER;
+			String password = Credential.PASSWORD;
+			UUID userId = userUpdate.getProfile().getUserId();
+			String jsonUser = gson.toJson(userUpdate);
+			
 			
 			String sql = "UPDATE " + TABLE + " (users) VALUES (?) WHERE uuid = ?";
 			
 			try{
 				Connection conn    = DriverManager.getConnection(url, user, password);
-				PreparedStatement statement = conn.PreparedStatement(sql);
+				PreparedStatement statement = conn.prepareStatement(sql);
 
 				statement.setString(1, jsonUser);
 				statement.setString(2, userId.toString());
@@ -107,6 +115,7 @@ public class Database {
 			int count = 0;
 			String[] cols = columns.split(",");
 			ArrayList<User> userList = new ArrayList<>();
+			Gson gson = new Gson();
 
 			while (results.next()) {
 				User user = null;
