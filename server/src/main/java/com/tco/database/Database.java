@@ -40,6 +40,34 @@ public class Database {
         }
 	}
 
+	  public User getUserById(UUID userID){
+		String sql = "SELECT * From " + TABLE + " WHERE uuid = ?";
+		String url      = Credential.url();
+		String user     = Credential.USER;
+		String password = Credential.PASSWORD;
+		String jsonUser = "";
+		
+		try (
+			// connect to the database and query
+			Connection conn    = DriverManager.getConnection(url, user, password);
+			PreparedStatement  query   = conn.prepareStatement(sql);
+			
+		) {
+			query.setString(1, userID.toString());
+			ResultSet results = query.executeQuery();
+			if(results.next()){
+				jsonUser = results.getString("users");
+			}
+			return new Gson().fromJson(jsonUser, User.class);
+		} catch (SQLException e) {
+		log.warn("SQL FAILED", e);
+		} catch (Exception e) {
+			log.warn("FAILED", e);
+		throw e;
+	}
+		return null;
+	  }
+
       public static List<User> users(String match, Integer limit) throws Exception {
 			String sql      = Select.match(match, limit);
 			String url      = Credential.url();
@@ -68,10 +96,8 @@ public class Database {
 			//Most effienct way to get something quick
 			String jsonUser = gson.toJson(addUser);
 			UUID userId = addUser.getProfile().getUserId();
-			System.out.println("GSON " + jsonUser);
 			
-			String sql = "INSERT INTO " + TABLE + " (id, json) VALUES (?, ?)";
-			System.out.println("SQL " + sql);
+			String sql = "INSERT INTO " + TABLE + " (uuid, users) VALUES (?, ?)";
 			try{
 				Connection conn    = DriverManager.getConnection(url, user, password);
 				PreparedStatement statement = conn.prepareStatement(sql);
@@ -79,6 +105,7 @@ public class Database {
 				statement.setString(1, userId.toString());
 				statement.setString(2, jsonUser);
 				statement.executeUpdate();
+				conn.commit();
 			}
 			catch( Exception e){
 				log.error("Failed to insert new user {} ", userId, e);
@@ -95,7 +122,7 @@ public class Database {
 			String jsonUser = gson.toJson(userUpdate);
 			
 			
-			String sql = "UPDATE " + TABLE + " (users) VALUES (?) WHERE uuid = ?";
+			String sql = "UPDATE " + TABLE + " SET users = ? WHERE uuid = ?";
 			
 			try{
 				Connection conn    = DriverManager.getConnection(url, user, password);
