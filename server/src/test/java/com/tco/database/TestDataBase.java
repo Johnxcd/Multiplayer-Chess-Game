@@ -35,7 +35,6 @@ public class TestDataBase {
         database.addUserDB(user);
         
         User retrievedUser = database.getUserById(uuid);
-        System.out.println(retrievedUser.getProfile().getUserId() + "userIDDDD");
         assertEquals(uuid, retrievedUser.getProfile().getUserId());
         assertNotNull(retrievedUser.getUserName());
     }
@@ -55,7 +54,6 @@ public class TestDataBase {
         database.updateUserDB(user);
 
         User retrievedUser = database.getUserById(uuid);
-        System.out.println(retrievedUser.getProfile().getUserId() + "userIDDDD");
         assertEquals(uuid, retrievedUser.getProfile().getUserId());
         assertEquals("newUser", retrievedUser.getUserName());
     }
