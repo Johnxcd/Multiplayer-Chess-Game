@@ -47,7 +47,7 @@ public class TestGame {
     @Test
     @DisplayName("Dureke: Test getUsers()")
     public void testGetUsers() {
-        assertEquals(game.getUsers()[0].getUsername(), "user1");
+        assertEquals(game.getUsers()[0].getUserName(), "user1");
     }
 
     @Test

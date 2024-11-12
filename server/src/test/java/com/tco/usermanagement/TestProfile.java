@@ -20,7 +20,7 @@ public class TestProfile {
     public void testProfileData() {
         History hist = new History();
 
-        profile.setHistroy(hist);
+        profile.setHistory(hist);
         
         String data = profile.getUserProfileData();
 

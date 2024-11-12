@@ -3,6 +3,8 @@ package com.tco.gamemanagement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.UUID;
+import com.tco.usermanagement.History;
 import com.tco.usermanagement.Profile;
 import com.tco.gameplaying.Match;
 import com.tco.gamemanagement.Notification; 
@@ -11,41 +13,49 @@ public class User implements Invitation{
     
   private static final Logger logger = Logger.getLogger(User.class.getName());
   private static List<User> users = new ArrayList<>();
-  private String username;
-  private String email;
-  private String password;
-  private Profile profile;
   private List<Notification> notifications = new ArrayList<>();
   private List<Invitation> invitations = new ArrayList<>();
   private List<Match> matches = new ArrayList<>();
+  private Profile profile;
 
-  public User(String username) {
-    this.username = username;
+  public User(String userName){
+    if(profile == null){
+      profile = new Profile();
+      profile.setHistory(new History());
+      profile.setCreationDate(profile.getCreationDate());
+      profile.createUserId();
+    }
+
+    this.profile.setUserName(userName);
     users.add(this);
   }
 
-  public String getUsername() {
-    return username;
+  public void setProfile(Profile profile){
+    this.profile = profile;
+  }
+
+  public Profile getProfile(){
+    return profile;
   }
 
   public void setUsername(String username) {
-    this.username = username;
+    this.profile.setUserName(username);
+  }
+
+  public String getUserName() {
+    return this.profile.getUserName();
   }
 
   public String getEmail() {
-    return email;
+    return this.profile.getEmail();
   }
 
   public void setEmail(String email) {
-    this.email = email;
+    this.profile.setEmail(email);
   }
   
   public static List<User> getUsers() {
     return users;
-  }
-
-  public Profile getProfile() {
-    return this.profile;
   }
 
   public List<Match> getMatches() {
@@ -56,22 +66,31 @@ public class User implements Invitation{
       return invitations;
   }
 
-  public static void sendInvitation(String username) {
+  public static void sendInvitation(String userName) {
       for (User user : users) {
-          if (user.getUsername().equals(username)) {
+          if (user.getUserName().equals(userName)) {
             user.onInvitation();
           }
       }
   }
 
+  public static User getUserByName(String userName) {
+    for (User user : users) {
+        if (user.getUserName().equals(userName)) {
+          return user;
+        }
+    }
+    return null;
+}
+
   public void register(String email, String password) {
-    this.email = email;
-    this.password = password;
+    this.profile.setEmail(email);
+    this.profile.setPassword(password);
     logger.info("User registered with email: " + email);
   }
 
   public User authenticate(String email, String password) {
-    if (this.email.equals(email) && this.password.equals(password)) {
+    if (this.profile.getEmail().equals(email) && this.profile.getPassword().equals(password)) {
         logger.info("User authenticated successfully.");
         return this;
     } else {
@@ -82,35 +101,36 @@ public class User implements Invitation{
 
   public void viewProfile() {
     // Do something
-    logger.info("Viewing profile for user: " + username);
+    logger.info("Viewing profile for user: " + getUserName());
   }
 
   public void updateProfile(Profile profile) {
+    //only thing worth updating is history at this point
     this.profile = profile;
     // Do something
-    logger.info("Profile updated for user: " + username);
+    logger.info("Profile updated for user: " + getUserName());
   }
 
   @Override
   public void acceptInvitation(Invitation invitation) {
     invitations.add(invitation);
-    logger.info(invitation.inviteMessage + username);
+    logger.info(invitation.inviteMessage + getUserName());
   }
 
   @Override
   public void rejectInvitation(Invitation invitation) {
     // Do something
-    logger.info(invitation.rejectedMessage + username);
+    logger.info(invitation.rejectedMessage + getUserName());
   }
 
   public void joinMatch(Match match) {
     matches.add(match);
-    logger.info("User " + username + " joined match.");
+    logger.info("User " + getUserName() + " joined match.");
   }
 
   public void quitMatch(Match match) {
     matches.remove(match);
-    logger.info("User " + username + " quit match.");
+    logger.info("User " + getUserName() + " quit match.");
   }
 
   @Override
