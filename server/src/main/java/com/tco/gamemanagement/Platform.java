@@ -1,5 +1,6 @@
 package com.tco.gamemanagement;
 
+import com.tco.gamemanagement.User;
 import com.tco.usermanagement.Profile;
 import com.tco.gameplaying.Match;
 
@@ -38,15 +39,6 @@ public class Platform {
         }
         return null;
     }
-
-    // private void login(String username, String password) {
-    //     Profile authorizedUser = authenticate(username, password);
-    //     if (authorizedUser == null) {
-    //         // incorrect password / username combination (or user does not exist)
-    //     } else {
-    //         this.setProfile(authorizedUser);
-    //     }
-    // }
 
     public void logout() {
         this.setProfile(null);
