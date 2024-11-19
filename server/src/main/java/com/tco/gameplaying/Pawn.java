@@ -19,6 +19,11 @@ public class Pawn extends Piece {
         if (game.isPositionOnBoard(forwardPos) && game.getPieceAt(forwardPos) == null) {
             moves.add(forwardPos);
         }
+        // Pawns can move 2 spaces if it hasn't moved before
+        int[] doubleMove = {this.getPos()[0] + (2 * direction), this.getPos()[1]};
+        if (!this.hasMoved() && game.getPieceAt(doubleMove) == null) {
+            moves.add(doubleMove);
+        }
 
         // Capture diagonally
         int[] leftCapture = {getPos()[0] + direction, getPos()[1] - 1};

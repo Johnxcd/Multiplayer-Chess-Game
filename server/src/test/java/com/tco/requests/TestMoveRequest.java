@@ -48,7 +48,7 @@ public class TestMoveRequest {
         MoveRequest request = new MoveRequest();
         request.setUuid(match.getMatchID());
         request.setFrom(new int[]{1, 0});
-        request.setTo(new int[]{3, 0}); // invalid for pawn
+        request.setTo(new int[]{4, 0}); // invalid for pawn
 
         // response
         assertThrows(BadRequestException.class, request::buildResponse);
