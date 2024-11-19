@@ -6,6 +6,7 @@ import com.tco.requests.ConfigRequest;
 import com.tco.requests.Request;
 import com.tco.requests.GameRequest;
 import com.tco.requests.MoveRequest;
+import com.tco.requests.UserRequest;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -40,6 +41,7 @@ public final class MicroServer {
             post("/config", (req, res) -> processHttpRequest(req, res, ConfigRequest.class));
             post("/game", (req, res) -> processHttpRequest(req, res, GameRequest.class)); // New route for game request
             post("/move", (req, res) -> processHttpRequest(req, res, MoveRequest.class)); // new route for move request
+            post("/user", (req, res) -> processHttpRequest(req, res, UserRequest.class)); // new route for user request
         });
     }
 
