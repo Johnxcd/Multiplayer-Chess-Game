@@ -1,0 +1,38 @@
+{
+    "$id": "https://example.com/address.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "move",
+    "description": "move request/response",
+    "type": "object",
+    "properties": {
+      "requestType": {
+        "description":"the TIP object type should be move",
+        "type":"string",
+        "pattern":"^move$"
+      },
+      "uuid": {
+        "description":"the UUID of the match",
+        "type":"string"
+      },
+      "from": {
+        "description": "coordinates to move from",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "minContains": 2,
+        "maxContains": 2
+      },
+      "to": {
+        "description": "coordinates to move to",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "minContains": 2,
+        "maxContains": 2
+      }
+    },
+    "required":["requestType","uuid","from","to"],
+    "additionalProperties": false
+}

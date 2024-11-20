@@ -1,9 +1,18 @@
 import Ajv from 'ajv';
 import * as configSchema from '../../schemas/ConfigResponse';
+import * as gameSchema from '../../schemas/GameResponse.json';
+import * as loginSchema from '../../schemas/LoginResponse.json';
+import * as moveSchema from '../../schemas/MoveResponse.json';
+import * as userSchema from '../../schemas/UserResponse.json';
+
 import { LOG } from './constants';
 
 const SCHEMAS = {
     config: configSchema,
+    game: gameSchema,
+    login: loginSchema,
+    move: moveSchema,
+    user: userSchema
 }
 
 export async function sendAPIRequest(requestBody, serverUrl) {
