@@ -5,16 +5,19 @@ import java.util.List;
 import com.tco.database.Database;
 import com.tco.gameplaying.Match;
 import com.tco.usermanagement.Profile;
+import java.util.logging.Logger;
+import java.lang.Exception;
 
 public class Platform {
     private Profile profile;
     private Match match;
+    private static final Logger logger = Logger.getLogger(Platform.class.getName());
 
     public Platform() {
         this.profile = null; // New Platform shouldn't have any user logged in!
         this.match = null;   // New Platform shouldn't have an active game up!
     }
-
+    
     public Profile getProfile() {
         return this.profile;
     }
@@ -33,11 +36,15 @@ public class Platform {
 
     // Loop users to find the one with the matching email
     public User login(String email, String password) throws Exception {
-        int limit = Integer.MAX_VALUE;
 
-        List<User> users = Database.users("", limit);
-
-        for (User user :users) {
+        List<User> users = null;
+        try{
+        users = Database.getAllUsers();
+        }
+        catch(Exception e){
+            logger.warning("Failed to get users from DB" + e.toString());
+        }
+        for (User user : users) {
             User authenticatedUser = user.authenticate(email, password);
             if (authenticatedUser != null) {
                 return authenticatedUser;

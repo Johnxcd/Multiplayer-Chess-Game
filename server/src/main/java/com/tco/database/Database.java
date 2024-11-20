@@ -40,7 +40,7 @@ public class Database {
         }
 	}
 
-	  public User getUserById(UUID userID){
+	  public static User getUserById(UUID userID){
 		String sql = "SELECT * From " + TABLE + " WHERE uuid = ?";
 		String url      = Credential.url();
 		String user     = Credential.USER;
@@ -70,6 +70,23 @@ public class Database {
 
       public static List<User> users(String match, Integer limit) throws Exception {
 			String sql      = Select.match(match, limit);
+			String url      = Credential.url();
+			String user     = Credential.USER;
+			String password = Credential.PASSWORD;
+			try (
+				// connect to the database and query
+				Connection conn    = DriverManager.getConnection(url, user, password);
+				Statement  query   = conn.createStatement();
+				ResultSet  results = query.executeQuery(sql)
+			) {
+				return convertResultUser(results, COLUMNS);
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+
+		public static List<User> getAllUsers() throws Exception {
+			String sql      = "SELECT * FROM users";
 			String url      = Credential.url();
 			String user     = Credential.USER;
 			String password = Credential.PASSWORD;
@@ -154,13 +171,13 @@ public class Database {
                             break;
                         case "users":
                             user = gson.fromJson(results.getString(col), User.class);
+							userList.add(user);
                             break;
                         default:
                             //nothing
                     }
-					userList.add(user);
+					
 				}
-				
 			}
 			return userList;
 		}
