@@ -109,4 +109,28 @@ public class TestUser {
         user1.quitMatch(match);
         assertFalse(user1.getMatches().contains(match));
     }
+    
+    @Test
+    @DisplayName("johnh9 test: Test getUsers")
+    public void testGetUsers() {
+        List<User> users = User.getUsers();
+        assertTrue(users.contains(user1));
+        assertTrue(users.contains(user2));
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test getInvitations")
+    public void testGetInvitations() {
+        user1.acceptInvitation(invitation);
+        List<Invitation> invitations = user1.getInvitations();
+        assertTrue(invitations.contains(invitation));
+    }
+
+    @Test
+    @DisplayName("johnh9 test: Test getMatches")
+    public void testGetMatches() {
+        user1.joinMatch(match);
+        List<Match> matches = user1.getMatches();
+        assertTrue(matches.contains(match));
+    }
 }
