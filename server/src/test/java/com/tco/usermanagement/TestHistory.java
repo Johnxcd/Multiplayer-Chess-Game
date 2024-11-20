@@ -130,21 +130,22 @@ public class TestHistory {
 
         match.setStatus(GameStatus.WHITECHECK);
         assertEquals("ONGOING", history.translateStatus(match, user1));
+    }
 
     @Test
     @DisplayName("johnh9 test: Adding multiple matches updates existing record")
     public void testAddingMultipleMatches() {
         Match match1 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
-        match1.setStatus(GameStatus.CHECKMATE);
-        history.add(match1);
+        match1.setStatus(GameStatus.WHITECHECKMATE);
+        history.add(match1, match1.getUsers()[0].getUserName());
 
         Match match2 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
         match2.setStatus(GameStatus.DRAW);
-        history.add(match2);
+        history.add(match2, match2.getUsers()[0].getUserName());
 
         Match match3 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
         match3.setStatus(GameStatus.ONGOING);
-        history.add(match3);
+        history.add(match3, match3.getUsers()[0].getUserName());
 
         assertTrue(Arrays.equals(new int[]{1, 0, 1, 1, 3}, history.getRecord()));
     }
@@ -153,15 +154,15 @@ public class TestHistory {
     @DisplayName("johnh9 test: Removing multiple matches updates existing record")
     public void testRemovingMultipleMatches() {
         Match match1 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
-        match1.setStatus(GameStatus.CHECKMATE);
-        history.add(match1);
+        match1.setStatus(GameStatus.WHITECHECKMATE);
+        history.add(match1, match1.getUsers()[0].getUserName());
 
         Match match2 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
         match2.setStatus(GameStatus.DRAW);
-        history.add(match2);
+        history.add(match2, match2.getUsers()[0].getUserName());
 
-        history.remove(match1);
-        history.remove(match2);
+        history.remove(match1, match1.getUsers()[0].getUserName());
+        history.remove(match2, match2.getUsers()[0].getUserName());
 
         assertTrue(Arrays.equals(new int[]{0, 0, 0, 0, 0}, history.getRecord()));
     }
@@ -170,16 +171,16 @@ public class TestHistory {
     @DisplayName("johnh9 test: Adding matches with mixed statuses updates existing record")
     public void testAddingMixedStatusMatches() {
         Match match1 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
-        match1.setStatus(GameStatus.CHECKMATE);
-        history.add(match1);
+        match1.setStatus(GameStatus.WHITECHECKMATE);
+        history.add(match1, match1.getUsers()[0].getUserName());
 
         Match match2 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
-        match2.setStatus(GameStatus.LOSS);
-        history.add(match2);
+        match2.setStatus(GameStatus.BLACKCHECKMATE);
+        history.add(match2, match2.getUsers()[0].getUserName());
 
         Match match3 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
         match3.setStatus(GameStatus.DRAW);
-        history.add(match3);
+        history.add(match3, match3.getUsers()[0].getUserName());
 
         assertTrue(Arrays.equals(new int[]{1, 1, 1, 0, 3}, history.getRecord()));
     }
@@ -188,12 +189,12 @@ public class TestHistory {
     @DisplayName("johnh9 test: Force update correctly resets and updates the record")
     public void testForceUpdate() {
         Match match1 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
-        match1.setStatus(GameStatus.CHECKMATE);
-        history.add(match1);
+        match1.setStatus(GameStatus.WHITECHECKMATE);
+        history.add(match1, match1.getUsers()[0].getUserName());
 
         Match match2 = new Match(new User[]{new User("user1"), new User("user2")}, new Rules());
-        match2.setStatus(GameStatus.LOSS);
-        history.add(match2);
+        match2.setStatus(GameStatus.BLACKCHECKMATE);
+        history.add(match2, match2.getUsers()[0].getUserName());
 
         history.forceUpdate();
 

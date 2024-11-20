@@ -83,7 +83,7 @@ public class History {
 
     // A match can update it's status without history knowing.
     // The record must reflect the accurate representation of w/l/d/o
-    private void forceUpdate() {
+    public void forceUpdate() {
         this.record.put("WIN", 0);
         this.record.put("LOSS", 0);
         this.record.put("DRAW", 0);
