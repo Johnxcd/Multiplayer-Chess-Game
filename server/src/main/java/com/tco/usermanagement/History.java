@@ -53,7 +53,6 @@ public class History {
 
     public String translateStatus(Match match, String username) {
         GameStatus status = match.getStatus();
-        // TODO: check if the checkmate is the user's, return win or loss depending on the result 
         if (status == GameStatus.WHITECHECKMATE || status == GameStatus.BLACKCHECKMATE) { 
             int winnerIndex = (status == GameStatus.WHITECHECKMATE) ? 0 : 1;
             String player = match.getUsers()[winnerIndex].getUserName();
