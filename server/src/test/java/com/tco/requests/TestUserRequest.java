@@ -55,6 +55,31 @@ public class TestUserRequest {
     }
 
     @Test
+    @DisplayName("sam25 test: Test user login fails")
+    public void testLoginUserFails() {
+        try{
+        UserRequest registerRequest = new UserRequest();
+        registerRequest.setAction("register");
+        registerRequest.setUserName("user1");
+        registerRequest.setEmail("user1@example.com");
+        registerRequest.setPassword("password123");
+        registerRequest.buildResponse();
+
+        
+        UserRequest loginRequest = new UserRequest();
+        loginRequest.setAction("login");
+        loginRequest.setEmail("user1@example.com");
+        loginRequest.setPassword("badPassword");
+        loginRequest.buildResponse();
+        // assertThrows(Exception.class, loginRequest.getUser());
+        assertNull(loginRequest.getUser());
+        }
+        catch(Exception E){
+          
+        }
+    }
+
+    @Test
     @DisplayName("Johnh9 test: Test updating user profile")
     public void testUpdateUserProfile() throws BadRequestException {
         UserRequest registerRequest = new UserRequest();

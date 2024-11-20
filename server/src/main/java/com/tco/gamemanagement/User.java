@@ -8,6 +8,7 @@ import com.tco.usermanagement.History;
 import com.tco.usermanagement.Profile;
 import com.tco.gameplaying.Match;
 import com.tco.gamemanagement.Notification; 
+import com.tco.database.Database;
 
 public class User implements Invitation{
     
@@ -86,17 +87,34 @@ public class User implements Invitation{
   public void register(String email, String password) {
     this.profile.setEmail(email);
     this.profile.setPassword(password);
+
+    if(this.profile.getUserId() == null){
+      this.profile.setUserId(UUID.randomUUID());
+    }
+    User findUser = Database.getUserById(this.profile.getUserId());
+
+    if( findUser == null){
+      Database.addUserDB(this);
+    }
+    
     logger.info("User registered with email: " + email);
   }
 
   public User authenticate(String email, String password) {
-    if (this.profile.getEmail().equals(email) && this.profile.getPassword().equals(password)) {
-        logger.info("User authenticated successfully.");
-        return this;
-    } else {
-        logger.warning("Authentication failed.");
-        return null;
+    try{
+    List<User> users = Database.getAllUsers();
     }
+    catch (Exception e){
+      logger.warning("Failed to get users from DB" + e);
+    }
+    for(User user : users){
+    if (user.profile.getEmail().equals(email) && user.profile.getPassword().equals(password)) {
+        logger.info("User authenticated successfully.");
+        return user;
+    }
+   }
+      logger.warning("Authentication failed.");
+      return null;
   }
 
   public void viewProfile() {

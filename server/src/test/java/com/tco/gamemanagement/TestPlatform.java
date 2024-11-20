@@ -10,6 +10,7 @@ import com.tco.gameplaying.Rules;
 import java.util.List;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.UUID;
 
 public class TestPlatform {
     
@@ -25,6 +26,7 @@ public class TestPlatform {
 
         User user = new User("user1");
         user.setProfile(new Profile());
+        user.getProfile().setUserId(UUID.fromString("fc4499e7-ada8-4728-a28a-63bfd02fe989"));
         user.register("user1@example.com", "password123");
 
         if (!User.getUsers().contains(user)) {
@@ -76,7 +78,7 @@ public class TestPlatform {
 
     @Test
     @DisplayName("johnh9 test: Login with valid credentials")
-    public void testLoginValid() {
+    public void testLoginValid() throws Exception{
         User loggedInUser = platform.login("user1@example.com", "password123");
         assertNotNull(loggedInUser);
         assertEquals("user1@example.com", loggedInUser.getEmail());
@@ -84,7 +86,7 @@ public class TestPlatform {
 
     @Test
     @DisplayName("johnh9 test: Login with invalid credentials")
-    public void testLoginInvalid() {
+    public void testLoginInvalid() throws Exception{
         User loggedInUser = platform.login("user1@example.com", "wrongpassword");
         assertNull(loggedInUser);
     }
@@ -111,7 +113,7 @@ public class TestPlatform {
 
     @Test
     @DisplayName("johnh9 test: Login with multiple users")
-    public void testLoginMultipleUsers() {
+    public void testLoginMultipleUsers() throws Exception{
         User user2 = new User("user2");
         user2.setProfile(new Profile());
         user2.register("user2@example.com", "password456");

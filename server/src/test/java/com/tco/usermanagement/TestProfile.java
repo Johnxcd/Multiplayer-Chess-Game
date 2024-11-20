@@ -31,8 +31,6 @@ public class TestProfile {
         expectedResult += "Draws: 0"  + "\n";
         expectedResult += "Ongoing: 0"  + "\n";
 
-        System.out.println("TEST: " + data);
-
         assertEquals(data, expectedResult);
     }
 }
