@@ -17,20 +17,20 @@
     "from": {
         "description": "coordinates to move from",
         "type": "array",
-        "prefixItems": [
-            { "type": "integer"},
-            { "type": "integer"}
-        ],
-        "items":false
+        "items": {
+          "type": "integer"
+        },
+        "minContains": 2,
+        "maxContains": 2
       },
     "to": {
         "description": "coordinates to move to",
         "type": "array",
-        "prefixItems": [
-            { "type": "integer"},
-            { "type": "integer"}
-        ],
-        "items":false
+        "items": {
+          "type": "integer"
+        },
+        "minContains": 2,
+        "maxContains": 2
       }
     },
     "required":["requestType","uuid","from","to"],
