@@ -33,7 +33,7 @@ public class TestRules {
         assertTrue(rules.validateMove(move, game));
 
         // invalid move example
-        move = new Move(new int[]{1, 0}, new int[]{3, 0});
+        move = new Move(new int[]{1, 0}, new int[]{4, 0});
         assertFalse(rules.validateMove(move, game));
     }
 
