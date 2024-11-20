@@ -1,8 +1,10 @@
 package com.tco.gamemanagement;
 
-import com.tco.gamemanagement.User;
-import com.tco.usermanagement.Profile;
+import java.util.List;
+
+import com.tco.database.Database;
 import com.tco.gameplaying.Match;
+import com.tco.usermanagement.Profile;
 
 public class Platform {
     private Profile profile;
@@ -28,10 +30,14 @@ public class Platform {
     public void setMatch(Match match) {
         this.match = match;
     }
-    
-    public User login(String email, String password) {
-        // Loop users to find the one with the matching email
-        for (User user : User.getUsers()) {
+
+    // Loop users to find the one with the matching email
+    public User login(String email, String password) throws Exception {
+        int limit = Integer.MAX_VALUE;
+
+        List<User> users = Database.users("", limit);
+
+        for (User user :users) {
             User authenticatedUser = user.authenticate(email, password);
             if (authenticatedUser != null) {
                 return authenticatedUser;
