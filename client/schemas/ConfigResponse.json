@@ -20,22 +20,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["config", "find", "distances", "tour", "type", "where"]
-      }
-    },
-    "type": {
-      "description": "types of places to choose",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": ["airport","balloonport","heliport","other"]
-      }
-    },
-    "where": {
-      "description": "a list of items from the config where filters.",
-      "type": "array",
-      "items": {
-        "type": "string"
+        "enum": ["config", "game", "login", "move", "user"]
       }
     }
   },
