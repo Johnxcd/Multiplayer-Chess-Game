@@ -4,11 +4,14 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Logger;
 
 import com.tco.gameplaying.Match;
 import com.tco.gamemanagement.GameStatus;
 
 public class History {
+    private static final Logger log = Logger.getLogger(History.class.getName());
     private int totalGames;
     private Map<String, Integer> record;
     private List<Match> matches;
@@ -37,6 +40,7 @@ public class History {
         record[2] = this.record.get("DRAW");      // D
         record[3] = this.record.get("ONGOING");   // O
         record[4] = this.totalGames;              // Total
+        log.info("Current record: " + Arrays.toString(record));
         return record;
     }
 
@@ -44,11 +48,13 @@ public class History {
         this.updateRecord(match, 1, username);
         this.matches.add(match);
         this.username = username;
+        log.info("Added match with status: " + match.getStatus());
     }
 
     public void remove(Match match, String username) {
         this.updateRecord(match, -1, username);
         this.matches.remove(match);
+        log.info("Removed match with status: " + match.getStatus());
     }
 
     public String translateStatus(Match match, String username) {
@@ -70,9 +76,9 @@ public class History {
     // helper function to add, remove and forceUpdate
     private void updateRecord(Match match, int value, String username) {
         String status = translateStatus(match, username);
-
         this.record.merge(status, value, Integer::sum);
         this.totalGames += value;
+        log.info("Updated record for status " + status + " by " + value);
     }
 
     // A match can update it's status without history knowing.
