@@ -54,7 +54,15 @@ public class History {
     public String translateStatus(Match match, String username) {
         GameStatus status = match.getStatus();
         // TODO: check if the checkmate is the user's, return win or loss depending on the result 
-        if (status == GameStatus.WHITECHECKMATE || status == GameStatus.BLACKCHECKMATE) { return "WIN"; /* else { return "LOSS"} */} 
+        if (status == GameStatus.WHITECHECKMATE || status == GameStatus.BLACKCHECKMATE) { 
+            int winnerIndex = (status == GameStatus.WHITECHECKMATE) ? 0 : 1;
+            String player = match.getUsers()[winnerIndex].getUserName();
+            if (player == username) { 
+                return "WIN"; 
+            } else { 
+                return "LOSS";
+            }
+        }
         else if (status == GameStatus.DRAW) { return "DRAW"; } 
         // ONGOING, WHITECHECK, BLACKCHECK
         else { return "ONGOING"; }
