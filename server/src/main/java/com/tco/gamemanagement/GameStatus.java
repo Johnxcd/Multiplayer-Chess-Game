@@ -2,6 +2,9 @@ package com.tco.gamemanagement;
 
 public enum GameStatus {
     ONGOING,
-    CHECKMATE,
+    WHITECHECKMATE,
+    WHITECHECK,
+    BLACKCHECKMATE,
+    BLACKCHECK,
     DRAW
 }

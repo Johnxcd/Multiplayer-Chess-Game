@@ -45,7 +45,8 @@ public class Match extends Game {
             this.addMove(startPiece, move);
 
             // check game status
-            if (rules.checkGameStatus(this, board) != GameStatus.ONGOING) {
+            this.status = rules.checkGameStatus(this, board);
+            if (this.status != GameStatus.ONGOING) {
                 endMatch();
             }
             return true;
