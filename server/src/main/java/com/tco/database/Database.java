@@ -143,7 +143,7 @@ public class Database {
 				return false;
 			}
 			for(User user : users){
-				if(user.getProfile().getUserId() == userCheck.getProfile().getUserId()){
+				if(user.getProfile().getUserId().toString().equals(userCheck.getProfile().getUserId().toString())){
 					return true;
 				}
 			}
@@ -221,7 +221,7 @@ public class Database {
 				return "SELECT "
 					+ data
 					+ " FROM " + TABLE
-					+ " WHERE name LIKE \"%" + match + "%\" "
+					+ " WHERE users LIKE \"%" + match + "%\" "
 					+ limit
 					+ " ;";
 			}

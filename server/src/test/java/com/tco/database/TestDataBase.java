@@ -82,13 +82,13 @@ public class TestDataBase {
         Boolean thirdFound = false;
         
         for (User user : users){
-            if(user.getProfile().getUserId() == user1.getProfile().getUserId()){
+            if(user.getProfile().getUserId().equals(user1.getProfile().getUserId())){
                 firstFound = true;
             }
-            if(user.getProfile().getUserId() == user2.getProfile().getUserId()){
+            if(user.getProfile().getUserId().equals(user2.getProfile().getUserId())){
                 secondFound = true;
             }
-            if(user.getProfile().getUserId() == user3.getProfile().getUserId()){
+            if(user.getProfile().getUserId().equals(user3.getProfile().getUserId())){
                 thirdFound = true;
             }
         }
@@ -127,7 +127,7 @@ public class TestDataBase {
     @DisplayName("sam25: testAddSameId DB")
     public void testAddSameId() throws Exception{
         User user1 = new User("Test1 UPDATE");
-        UUID uuid = UUID.fromString("66720858-9033-48b2-8bf7-76533fe7926a");
+        UUID uuid = UUID.fromString("67520858-9155-48b2-8bf7-76533fe7926a");
         user1.getProfile().setUserId(uuid);
 
         User user2 = new User("Test1 UPDATE");
@@ -139,10 +139,10 @@ public class TestDataBase {
 
         List<User> users = Database.getAllUsers();
 
-        List<User> userFound = new ArrayList<>();
+        List<User> userFound = new ArrayList<User>();
 
         for(User user : users){
-            if(user.getProfile().getUserId() == uuid){
+            if(user.getProfile().getUserId().toString().equals(uuid.toString())){
                 userFound.add(user);
             }
         }
@@ -163,7 +163,7 @@ public class TestDataBase {
 
         Database.addUserDB(user1);
 
-        int foundNumber = Database.found("*");
+        int foundNumber = Database.found("");
         
         assertTrue(foundNumber > 0);
 
@@ -181,7 +181,7 @@ public class TestDataBase {
         Database.addUserDB(user1);
 
         //Does not mean we get the user we added, we just get the first user found
-        List<User> users = Database.users("*", 1);
+        List<User> users = Database.users("", 1);
         
         assertTrue(users.size() == 1);
 
