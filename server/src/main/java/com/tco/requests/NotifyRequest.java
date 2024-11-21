@@ -30,7 +30,6 @@ public class NotifyRequest extends Request {
         //Notifications will be stored as ["Notification Type", "Additional Parameter"]
         //Examples: ["Invitation","Inviting User"] or ["MatchResult","Win"]  
         HashMap<String, String> userNotifs = new HashMap<String, String>();
-        userNotifs.put("invitation", "test");
         return userNotifs;
     }
 
