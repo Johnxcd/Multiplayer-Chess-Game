@@ -1,0 +1,36 @@
+{
+    "$id": "https://example.com/game.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "notify",
+    "description": "notify request/response",
+    "type": "object",
+    "properties": {
+      "requestType": {
+        "description": "the object type should be notify",
+        "type": "string",
+        "pattern": "^notify$"
+      },
+      "notifications": {
+        "description": "A list of every notification for the user",
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": [
+            "notificationType",
+            "additionalParam"
+          ],
+          "properties": {
+            "notificationType": {
+              "type": "string"
+            },
+            "additionalParam": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": ["requestType", "notifications"],
+    "additionalProperties": true
+}
+  
