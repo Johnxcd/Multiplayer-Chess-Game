@@ -1,23 +1,20 @@
 package com.tco.database;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import com.tco.gamemanagement.User;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
+import com.tco.gamemanagement.User;
 
 public class Database {
 
@@ -104,6 +101,11 @@ public class Database {
 
 		public static void addUserDB(User addUser){
 
+			if(userExists(addUser)){
+				log.info("User already exists in DB" + addUser.getProfile().getUserName());
+				return;
+			}
+
 			Gson gson = new Gson();
 			String url      = Credential.url();
 			String user     = Credential.USER;
@@ -127,6 +129,25 @@ public class Database {
 			catch( Exception e){
 				log.error("Failed to insert new user {} ", userId, e);
 			}
+		}
+
+		private static Boolean userExists(User userCheck){
+			List<User> users = null;
+			try{
+			users = getAllUsers();
+			}
+			catch (Exception e){
+				log.info("Failed to get all users from DB" + e);
+			}
+			if(users == null){
+				return false;
+			}
+			for(User user : users){
+				if(user.getProfile().getUserId().toString().equals(userCheck.getProfile().getUserId().toString())){
+					return true;
+				}
+			}
+			return false;
 		}
 
 		public static void updateUserDB(User userUpdate){
@@ -154,9 +175,7 @@ public class Database {
 			}
 		}
 
-        //TODO: Need better setters for user
         private static List<User> convertResultUser(ResultSet results, String columns) throws Exception {
-			int count = 0;
 			String[] cols = columns.split(",");
 			ArrayList<User> userList = new ArrayList<>();
 			Gson gson = new Gson();
@@ -202,7 +221,7 @@ public class Database {
 				return "SELECT "
 					+ data
 					+ " FROM " + TABLE
-					+ " WHERE name LIKE \"%" + match + "%\" "
+					+ " WHERE users LIKE \"%" + match + "%\" "
 					+ limit
 					+ " ;";
 			}
