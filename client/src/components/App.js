@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 import LoginPage from './LoginPage';
 import GamePage from './GamePage';
 import DashboardPage from './DashboardPage';
+import { useServerSettings } from '../hooks/useServerSettings'
 
 export default function App() {
     return (
@@ -14,6 +15,11 @@ export default function App() {
 }
 
 export const HookCaller = () => {
+    function showMessage(message, variant = "info") {
+        enqueueSnackbar(message, { variant: variant })
+    }
+
+    const [serverSettings, processServerConfigSuccess] = useServerSettings(showMessage);
     const { enqueueSnackbar } = useSnackbar();
     const [currentPage, setCurrentPage] = useState('home');
 
@@ -41,19 +47,22 @@ export const HookCaller = () => {
     switch (currentPage) {
         case 'game':
             pageComponent = <GamePage 
+            serverSettings={serverSettings}
             showMessage={showMessage}
             onBackButtonClick={goToDashboardPage}
             />;
             break;
-        case 'login':
+            case 'login':
             pageComponent = <LoginPage 
+            serverSettings={serverSettings}
             showMessage={showMessage} 
             onBackButtonClick={goToHomePage} 
             onLoginSuccess={goToDashboardPage} // Navigate to dashboard on successful login
             />;
             break;
-        case 'dashboard':
+            case 'dashboard':
             pageComponent = <DashboardPage 
+            serverSettings={serverSettings}
             showMessage={showMessage} 
             onBackButtonClick={goToHomePage} 
             playGame={goToGamePage}
@@ -65,12 +74,4 @@ export const HookCaller = () => {
     }
 
     return pageComponent;
-
-
-    return (
-    currentPage === 'home' ?
-    <HomePage showMessage={showMessage} onLoginClick={goToLoginPage}/>
-    :
-    <LoginPage showMessage={showMessage} onBackButtonClick={goToHomePage}/>
-    );
 };

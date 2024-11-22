@@ -14,7 +14,7 @@ export default function HomePage(props) {
 	return (
 		<div className='page'>
 			<h1>Team 05! Code Monkeys</h1>
-			<img src={TeamPicture} alt='Team Picture' width='900' height='600'></img>
+			<img className='main-picture' src={TeamPicture} alt='Team Picture' width='900' height='600'></img>
 			<button onClick={props.onLoginClick}> Login </button>
 		</div>
 	);
