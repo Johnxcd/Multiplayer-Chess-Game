@@ -3,7 +3,7 @@
 		"_postman_id": "ccbf2787-b52a-4b54-8a7f-c2072b2333df",
 		"name": "User",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "33032020"
+		"_exporter_id": "38882113"
 	},
 	"item": [
 		{
@@ -31,13 +31,13 @@
 							"pm.test(\"sam25: username should not be empty\", function () {\r",
 							"  const responseData = pm.response.json();\r",
 							"  \r",
-							"  pm.expect(responseData.userName).to.exist.and.to.have.lengthOf.at.least(1, \"userName should not be empty\");\r",
+							"  pm.expect(responseData.userName).to.exist.and.to.have.lengthOf.at.least(1, \"Password should not be empty\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"sam25: email should not be empty\", function () {\r",
 							"  const responseData = pm.response.json();\r",
 							"  \r",
-							"  pm.expect(responseData.email).to.exist.and.to.have.lengthOf.at.least(1, \"email should not be empty\");\r",
+							"  pm.expect(responseData.email).to.exist.and.to.have.lengthOf.at.least(1, \"Password should not be empty\");\r",
 							"});\r",
 							"\r",
 							""
@@ -76,6 +76,79 @@
 					}
 				},
 				"url": "{{BASE_URL}}/api/move"
+			},
+			"response": []
+		},
+		{
+			"name": "{{BASE_URL}}/api/user Mattjon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"mattjon: Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.have.property('email');\r",
+							"    pm.expect(responseData).to.have.property('password');\r",
+							"    pm.expect(responseData).to.have.property('userName');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mattjon: Password should equal value\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.password).to.equal(\"testPass\", \"Password should not be empty\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mattjon: username should equal value\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.userName).to.equal(\"testName\", \"Password should not be empty\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"mattjon: email should equal value\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.email).to.equal(\"test@gmail.com\", \"Password should not be empty\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestType\": \"user\",\r\n    \"action\": \"register\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"testPass\",\r\n    \"userName\": \"testName\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BASE_URL}}/api/user"
 			},
 			"response": []
 		}
