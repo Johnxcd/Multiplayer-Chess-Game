@@ -83,4 +83,41 @@ public class TestMicroServer {
         HttpResponse response = postRequest("/api/invalid", invalidRequestJSON);
         assertEquals(404, response.getStatusLine().getStatusCode());
     }
+
+    @Test
+    @DisplayName("ept: An invalid GameRequest responds with a 400 status")
+    public void testInvalidGameRequest() throws IOException {
+        String invalidRequestJSON = "{}";
+        HttpResponse response = postRequest("/api/game", invalidRequestJSON);
+        assertEquals(400, response.getStatusLine().getStatusCode());
+    }
+
+    @Test
+    @DisplayName("ept: An invalid MoveRequest responds with a 400 status")
+    public void testInvalidMoveRequest() throws IOException {
+        String invalidRequestJSON = "{}";
+        HttpResponse response = postRequest("/api/move", invalidRequestJSON);
+        assertEquals(400, response.getStatusLine().getStatusCode());
+    }
+    
+    @Test
+    @DisplayName("ept: An invalid UserRequest responds with a 400 status")
+    public void testInvalidUserRequest() throws IOException {
+        String invalidRequestJSON = "{}";
+        HttpResponse response = postRequest("/api/user", invalidRequestJSON);
+        assertEquals(400, response.getStatusLine().getStatusCode());
+    }
+
+    @Test
+    @DisplayName("ept: A valid UserRequest responds with a 200 status")
+    public void testValidUserRequest() throws IOException {
+        String requestBodyJSON = new JSONObject()
+        .put("requestType", "user")
+        .put("action", "register")
+        .put("email", "example")
+        .put("password", "example")
+        .toString();
+        HttpResponse response = postRequest("/api/user", requestBodyJSON);
+        assertEquals(200, response.getStatusLine().getStatusCode());
+    }
 }
