@@ -4,17 +4,6 @@
     for this class, and to spend that time on styling of your own personal webpage or side project.
  */
 
- .page {
-    display: flex;
-    background-color: Black;
-    flex-direction: column;
-    justify-content: center;
- }
- 
- h1 {
-    color: white;
- }
-
  .chessboard {
    display: grid;
    grid-template-rows: repeat(8, 1fr);
@@ -48,4 +37,297 @@
 .chess-piece {
    width: 90%;
    height: auto;
+}
+
+.page {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   background: 
+     linear-gradient(45deg, #8b4513 25%, transparent 25%, transparent 75%, #8b4513 75%, #8b4513),
+     linear-gradient(45deg, #8b4513 25%, #a0522d 25%, #a0522d 75%, #8b4513 75%, #8b4513);
+   background-size: 50px 50px; /* Set the size of the checkerboard squares */
+   background-position: 0 0, 25px 25px; /* Offset the second layer for the checkerboard effect */
+   color: white;
+   font-family: 'Arial', sans-serif;
+ }
+ 
+ h1 {
+   margin-bottom: 20px;
+   font-size: 3rem;
+   text-shadow: 2px 2px #5a3e2b; // Slight shadow for a carved text feel
+ }
+
+label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #5a3e2b;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 15px; // Space between elements
+ }
+ 
+ label {
+   font-size: 1.2rem;
+   margin-bottom: 5px;
+ }
+ 
+ input {
+   width: 300px;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #5a3e2b;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .main-picture {
+   border: 5px solid #5a3e2b;
+   border-radius: 10px; // Slightly rounded edges for the picture
+   margin-bottom: 20px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // Add a slight shadow
+ }
+ 
+ button {
+   background: linear-gradient(45deg, #8b5a2b, #deb887); // Wooden button feel
+   border: none;
+   border-radius: 10px;
+   color: white;
+   font-size: 1.2rem;
+   padding: 10px 20px;
+   cursor: pointer;
+   text-shadow: 1px 1px #5a3e2b; // Carved text effect for the button
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Button shadow
+   transition: all 0.3s ease;
+ }
+ 
+ button:hover {
+   background: linear-gradient(45deg, #deb887, #8b5a2b); // Reverse gradient on hover
+   transform: scale(1.1); // Slightly enlarge on hover
+ }
+ 
+ button:active {
+   transform: scale(1); // Reset size on click
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); // Reduce shadow on click
+ }
+ 
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Add spacing between buttons */
+}
+
+.profile-card {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 50%;
+  height: 50%;
+  background: 
+      linear-gradient(45deg, #5a3e2b 25%, transparent 25%, transparent 75%, #5a3e2b 75%, #5a3e2b),
+      linear-gradient(45deg, #5a3e2b 25%, #3e2723 25%, #3e2723 75%, #5a3e2b 75%, #5a3e2b);
+  background-size: 25px 25px;
+  background-position: 0 0, 12.5px 12.5px;
+  border: 5px solid #4e342e;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.history-section {
+  margin-top: 10px;
+  width: 100%;
+  height: 70%;
+  overflow-y: auto;
+  background: #3e2723;
+  border-radius: 5px;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  border: 1px solid #5a3e2b;
+}
+
+.chess-pieces {
+  position: relative; /* Ensure relative context if needed for child elements */
+  width: 100%;
+  height: 100%;
+}
+
+.black-king-statue {
+  position: fixed;
+  left: 5%; /* Adjust for padding from the left edge */
+  bottom: 5%; /* Adjust for padding from the bottom edge */
+  width: calc(20%); /* Dynamic width based on screen size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.white-king-statue {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  width: calc(20%);
+  height: auto;
+}
+
+
+.black-queen-statue {
+  position: fixed;
+  right: 5%; /* Adjust for padding from the left edge */
+  top: 5%; /* Adjust for padding from the top edge */
+  width: calc(20%); /* Dynamic width based on screen size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.white-queen-statue {
+  position: fixed;
+  left: 5%;
+  top: 5%;
+  width: calc(20%);
+  height: auto;
+}
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Space out the content */
+  height: 100vh;
+  background: 
+    linear-gradient(45deg, #8b4513 25%, transparent 25%, transparent 75%, #8b4513 75%, #8b4513),
+    linear-gradient(45deg, #8b4513 25%, #a0522d 25%, #a0522d 75%, #8b4513 75%, #8b4513);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  padding: 20px 0; /* Add padding to the top and bottom */
+}
+
+.dashboard-header h1 {
+  position: relative;
+  font-size: 3rem;
+  text-shadow: 2px 2px #5a3e2b; /* Slight shadow for depth */
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+
+  /* Add a cool border */
+  background: linear-gradient(to right, #8b4513, #a0522d);
+  border: 5px solid #5a3e2b;
+  border-radius: 15px; /* Rounded edges */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow for pop-out effect */
+
+  /* Additional decorative effects */
+  overflow: hidden;
+}
+
+.dashboard-header h1:before,
+.dashboard-header h1:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, #a0522d, transparent);
+}
+
+.dashboard-header h1:before {
+  left: -60px;
+}
+
+.dashboard-header h1:after {
+  right: -60px;
+}
+
+.dashboard-button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* Space between buttons */
+}
+
+.dashboard-button {
+  font-size: 1.5rem; /* Larger font size */
+  padding: 15px 30px; /* Bigger padding for prominence */
+  border-radius: 10px; /* Rounded edges */
+  border: none; /* No border */
+  cursor: pointer;
+  text-shadow: 1px 1px #5a3e2b; /* Text shadow for depth */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Play button styling */
+.play-button {
+  background-color: #2abd2f; /* Green background */
+  color: white;
+  width: 300px; /* Wide button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+.play-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.1); /* Slight enlargement on hover */
+}
+
+.play-button:active {
+  transform: scale(1); /* Reset size on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Reduce shadow on click */
+}
+
+/* Go Back button styling */
+.go-back-button {
+  background-color: #deb887; /* Light brown */
+  color: #5a3e2b;
+  width: 200px; /* Narrower button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+.go-back-button:hover {
+  background-color: #d2a47d; /* Slightly darker on hover */
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+.go-back-button:active {
+  transform: scale(1); /* Reset size on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Reduce shadow on click */
+}
+
+/* Center everything vertically and horizontally */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full screen height */
+}
+
+.profile-button-container {
+  margin-top: 20px; /* Slight space below other buttons */
+}
+
+.profile-button {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
 }

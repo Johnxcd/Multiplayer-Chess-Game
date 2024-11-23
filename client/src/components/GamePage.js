@@ -22,18 +22,66 @@ export default function GamePage(props) {
     const [selectedPiece, setSelectedPiece] = useState(null);
 	
 	function initializeBoard() {
-        // Initialize a simple chessboard state with pawns and empty squares for demo purposes
-        const emptyRow = Array(8).fill(null);
-        const board = [
-            Array(8).fill({ type: 'pawn', color: 'black' }), // Black pawns
-            ...Array(6).fill(emptyRow), // Empty rows
-            Array(8).fill({ type: 'pawn', color: 'white' }) // White pawns
+        // Define rows with specific pieces for both sides
+        const initialBlackRow = [
+            { type: 'rook', color: 'black' },
+            { type: 'knight', color: 'black' },
+            { type: 'bishop', color: 'black' },
+            { type: 'queen', color: 'black' },
+            { type: 'king', color: 'black' },
+            { type: 'bishop', color: 'black' },
+            { type: 'knight', color: 'black' },
+            { type: 'rook', color: 'black' },
         ];
+        const initialWhiteRow = [
+            { type: 'rook', color: 'white' },
+            { type: 'knight', color: 'white' },
+            { type: 'bishop', color: 'white' },
+            { type: 'queen', color: 'white' },
+            { type: 'king', color: 'white' },
+            { type: 'bishop', color: 'white' },
+            { type: 'knight', color: 'white' },
+            { type: 'rook', color: 'white' },
+        ];
+    
+        // Define empty rows and pawns
+        const emptyRow = Array(8).fill(null);
+        const blackPawns = Array(8).fill({ type: 'pawn', color: 'black' });
+        const whitePawns = Array(8).fill({ type: 'pawn', color: 'white' });
+    
+        // Assemble the board
+        const board = [
+            initialBlackRow,  // Black's main pieces
+            blackPawns,       // Black's pawns
+            ...Array(4).fill(emptyRow),  // Empty rows
+            whitePawns,       // White's pawns
+            initialWhiteRow,  // White's main pieces
+        ];
+    
         return board;
     }
+    
+
+    const handleMove = async (from, to) => {
+        const moveRequest = {
+            requestType: "move",
+            uuid: "game-1234",
+            from: from,
+            to: to
+        };
+        const response = await sendAPIRequest(moveRequest, getOriginalServerUrl());
+        if (response) {
+            console.log("Move successful", response);
+            // Update board state here
+        } else {
+            console.error("Move failed");
+        }
+    };
 
     const handleSquareClick = (row, col) => {
         if (selectedPiece) {
+            //Ask if its valid
+
             // Move the piece
             const newBoard = board.map((r, rIndex) =>
                 r.map((square, cIndex) => {
@@ -75,6 +123,31 @@ export default function GamePage(props) {
                                                 ? square.color === 'black'
                                                     ? BlackPawn
                                                     : WhitePawn
+                                                : 
+                                            square.type === 'rook'
+                                                ? square.color === 'black'
+                                                    ? BlackRook
+                                                    : WhiteRook
+                                                : 
+                                            square.type === 'queen'
+                                                ? square.color === 'black'
+                                                    ? BlackQueen
+                                                    : WhiteQueen
+                                                : 
+                                            square.type === 'bishop'
+                                                ? square.color === 'black'
+                                                    ? BlackBishop
+                                                    : WhiteBishop
+                                                : 
+                                            square.type === 'knight'
+                                                ? square.color === 'black'
+                                                    ? BlackKnight
+                                                    : WhiteKnight
+                                                : 
+                                            square.type === 'king'
+                                                ? square.color === 'black'
+                                                    ? BlackKing
+                                                    : WhiteKing
                                                 : null
                                         }
                                         alt={square.color + ' ' + square.type}
@@ -86,6 +159,29 @@ export default function GamePage(props) {
                     </div>
                 ))}
             </div>
+            {/* Chess Pieces */}
+			<div className="chess-pieces">
+            <img
+				src={BlackRook}
+				alt="Black Rook"
+				className="black-king-statue"
+				/>
+				<img
+				src={WhiteRook}
+				alt="White Rook"
+				className="white-king-statue"
+				/>
+                <img
+				src={BlackRook}
+				alt="Black Rook"
+				className="black-queen-statue"
+				/>
+				<img
+				src={WhiteRook}
+				alt="White Rook"
+				className="white-queen-statue"
+				/>
+			</div>
 		</div>
 	);
 }
