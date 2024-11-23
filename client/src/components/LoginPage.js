@@ -14,6 +14,9 @@ export default function LoginPage(props) {
       alert('Server URL is not configured. Please check the settings.');
       return;
     }
+    //DELETE THIS
+    props.onLoginSuccess();
+    return;
 
     if(username == 'admin' && password == username) {
       console.log("ADMIN Login successful:");
@@ -24,7 +27,7 @@ export default function LoginPage(props) {
         action: "login",
         email: email,
         password: password,
-        userName: username,
+        userName: username
       };
 
       try {
@@ -63,7 +66,7 @@ export default function LoginPage(props) {
       action: "register",
       email: email,
       password: password,
-      userName: username, // Assuming username doubles as the display name
+      userName: username // Assuming username doubles as the display name
     };
 
     try {
