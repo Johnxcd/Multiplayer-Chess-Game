@@ -4,7 +4,7 @@ import * as gameSchema from '../../schemas/GameResponse.json';
 import * as loginSchema from '../../schemas/LoginResponse.json';
 import * as moveSchema from '../../schemas/MoveResponse.json';
 import * as userSchema from '../../schemas/UserResponse.json';
-
+import * as notifySchema from '../../schemas/NotifyResponse.json';
 import { LOG } from './constants';
 
 const SCHEMAS = {
@@ -12,7 +12,8 @@ const SCHEMAS = {
     game: gameSchema,
     login: loginSchema,
     move: moveSchema,
-    user: userSchema
+    user: userSchema,
+    notify: notifySchema
 }
 
 export async function sendAPIRequest(requestBody, serverUrl) {
