@@ -65,9 +65,12 @@ export default function DashboardPage(props) {
 			{/* Profile Card */}
 			{showProfileCard && (
 				<div className="profile-card">
-				<h3>Profile Name</h3>
+				<h3>Admin</h3>
 				<div className="history-section">
-					<p>History section</p>
+					<p>Game History</p>
+					<p>Wins: 0</p>
+					<p>Losses: 0</p>
+					<p>Draws: 0</p>
 				</div>
 				</div>
 			)}
